@@ -1,0 +1,44 @@
+# Raise / Rescue
+
+# @IMPORT types.b5
+
+TYPE RuntimeError
+  FIELD message AS String
+END
+
+PROC RuntimeError_constructor_new
+  PARAM arg AS String
+  RETURNS RuntimeError
+BODY
+  DECLARE result AS RuntimeError
+  SET REF result END VALUE NEW RuntimeError
+  SET REF result PICK message END VALUE REF arg END
+  RETURN REF result END
+END
+
+PROC main
+  MAIN
+BODY
+  DECLARE i AS int32
+  SET REF i END VALUE LITERAL `0` AS int32
+  LOOP loop_1
+  BLOCK
+    IF NOT LT REF i END WITH LITERAL `100` AS int32 THEN
+      BREAK loop_1
+    END
+
+    DECLARE error AS RuntimeError
+
+    IF EQ REF i END WITH LITERAL `23` AS int32 THEN
+      SET REF error END VALUE FETCH RuntimeError_constructor_new ARG LITERAL `I don't like 23` AS String END
+      JUMP rescue_1
+    END
+
+    MARK rescue_1
+    IF IS REF error END OF RuntimeError THEN
+      # I don't care
+    END
+
+    SET REF i END VALUE ADD REF i END WITH LITERAL `1` AS int32
+  END
+END
