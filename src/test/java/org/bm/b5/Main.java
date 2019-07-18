@@ -20,11 +20,11 @@ public class Main {
     program.check();
     program.link();
 
-    try(CWriter writer = new CWriter(System.out)) {
-      CCompiler compiler = new CCompiler(writer);
-
-      compiler.compile(program);
-    }
+//    try(CWriter writer = new CWriter(System.out)) {
+//      CCompiler compiler = new CCompiler(writer);
+//
+//      compiler.compile(program);
+//    }
   }
 
 }

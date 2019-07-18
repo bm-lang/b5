@@ -39,6 +39,9 @@ public class PExpr {
     else if (reader.test(B5Lang.GET)) {
       return PGet.parse(reader, program, instr);
     }
+    else if (reader.test(B5Lang.NULL)) {
+      return PNull.parse(reader, program, instr);
+    }
 
     for (B5UnaryOperator op : B5UnaryOperator.values()) {
       if (reader.test(op)) {

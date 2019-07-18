@@ -1,6 +1,5 @@
 package org.bm.b5.collections;
 
-import org.bm.b5.B5Element;
 import org.bm.b5.B5Exception;
 import org.bm.b5.B5NamedElement;
 

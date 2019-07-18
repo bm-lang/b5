@@ -16,9 +16,11 @@ public class B5 {
   public static final String BOOL = "bool";
   public static final String CHAR = "char";
   public static final String ARRAY = "array";
+  public static final String ANY = "any";
 
   public static void createNativeTypes(B5Program program) {
     program.types.create(INT32).defined = true;
+    program.types.create(ANY).defined = true;
   }
 
 }

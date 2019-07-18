@@ -45,6 +45,7 @@ public enum B5Lang {
   FETCH,
   LEN,
   GET,
+  NULL,
 
   WITH,
   ARG,
