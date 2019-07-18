@@ -1,7 +1,7 @@
 package org.bm.b5.parsing.units.instructions;
 
 import org.bm.b5.B5Program;
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Proc;
 import org.bm.b5.expressions.B5Expr;
 import org.bm.b5.instructions.B5Call;
@@ -15,7 +15,7 @@ public class PCall {
     reader.expect(B5Lang.CALL);
 
     B5Proc proc = reader.nextProc(program);
-    B5Call call = block.addCall(proc);
+    B5Call call = new B5Call(block, proc);
 
     while (reader.pull(B5Lang.ARG)) {
       B5Expr arg = PExpr.parse(reader, program, call);

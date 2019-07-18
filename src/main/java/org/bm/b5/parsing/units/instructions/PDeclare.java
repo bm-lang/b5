@@ -1,8 +1,9 @@
 package org.bm.b5.parsing.units.instructions;
 
 import org.bm.b5.B5Program;
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Type;
+import org.bm.b5.instructions.B5Declare;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
 
@@ -17,7 +18,9 @@ public class PDeclare {
 
     B5Type type = reader.nextType(program);
 
-    block.addDeclare(name, type);
+    B5Declare declare = new B5Declare(block, name, type);
+
+    block.add(declare);
   }
 
 }

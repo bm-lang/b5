@@ -1,6 +1,6 @@
 package org.bm.b5.instructions;
 
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.expressions.B5Expr;
 
 public class B5Return extends B5Instr {

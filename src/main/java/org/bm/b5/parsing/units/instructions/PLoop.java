@@ -1,13 +1,11 @@
 package org.bm.b5.parsing.units.instructions;
 
 import org.bm.b5.B5Program;
-import org.bm.b5.collections.B5Block;
-import org.bm.b5.instructions.B5IfElse;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.instructions.B5Loop;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
 import org.bm.b5.parsing.units.PBlock;
-import org.bm.b5.parsing.units.PExpr;
 
 public class PLoop {
   

@@ -3,7 +3,6 @@ package org.bm.b5.entities;
 import org.bm.b5.B5Exception;
 import org.bm.b5.B5Program;
 import org.bm.b5.B5Scope;
-import org.bm.b5.collections.B5Block;
 
 public class B5Scalar extends B5Entity implements B5Scope {
 

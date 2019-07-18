@@ -1,8 +1,7 @@
 package org.bm.b5.parsing.units;
 
-import org.bm.b5.B5Exception;
 import org.bm.b5.B5Program;
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
 import org.bm.b5.parsing.units.instructions.*;

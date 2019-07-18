@@ -2,7 +2,7 @@ package org.bm.b5.compiling.c;
 
 import org.bm.b5.B5Exception;
 import org.bm.b5.B5Program;
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Field;
 import org.bm.b5.entities.B5Proc;
 import org.bm.b5.entities.B5Type;

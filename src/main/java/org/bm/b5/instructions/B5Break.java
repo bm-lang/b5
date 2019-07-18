@@ -1,6 +1,6 @@
 package org.bm.b5.instructions;
 
-import org.bm.b5.collections.B5Block;
+import org.bm.b5.entities.B5Block;
 
 public class B5Break extends B5Instr {
 
