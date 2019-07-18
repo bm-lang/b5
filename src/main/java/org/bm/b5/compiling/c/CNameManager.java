@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class CNameManager {
 
   private final HashMap<B5NamedElement, String> elems;
-  private final HashMap<String, B5NamedElement> names; // TODO check if it can be converted to HashSet
+  private final HashMap<String, B5NamedElement> names; // TODO checkDefinition if it can be converted to HashSet
 
   private int nextId;
 

@@ -14,7 +14,7 @@ public class B5Jump extends B5Instr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

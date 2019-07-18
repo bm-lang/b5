@@ -4,6 +4,6 @@ import org.bm.b5.instructions.B5Loop;
 
 abstract public class B5Element {
 
-  abstract public void check();
+  abstract public void checkDefinition();
 
 }

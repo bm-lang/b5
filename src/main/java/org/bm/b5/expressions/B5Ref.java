@@ -18,7 +18,7 @@ public class B5Ref extends B5Expr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
     if (path.isEmpty()) {
       throw new B5Exception("reference path cannot be empty");
     }

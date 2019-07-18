@@ -12,7 +12,7 @@ public class B5Array extends B5Expr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

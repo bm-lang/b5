@@ -14,7 +14,7 @@ public class B5Put extends B5Instr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

@@ -15,7 +15,7 @@ public class B5Literal extends B5Expr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

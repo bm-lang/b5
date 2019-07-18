@@ -15,7 +15,7 @@ public class B5Loop extends B5Instr implements B5Scope {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

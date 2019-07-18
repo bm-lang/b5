@@ -23,7 +23,7 @@ public class B5Proc extends B5Entity implements B5Scope {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
     if (!defined) {
       throw new B5Exception("the proc " + name + " is not defined");
     }

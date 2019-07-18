@@ -9,7 +9,7 @@ import org.bm.b5.entities.B5Scalar;
 
 import java.util.Objects;
 
-public class B5Program implements B5Scope {
+public class B5Program extends B5Element implements B5Scope {
 
   public final B5ProgramTypes types;
   public final B5ProgramScalars scalars;
@@ -23,10 +23,10 @@ public class B5Program implements B5Scope {
     procs = new B5ProgramProcs(this);
   }
 
-  public void check() {
-    types.check();
-    scalars.check();
-    procs.check();
+  public void checkDefinition() {
+    types.checkDefinitionAll();
+    scalars.checkDefinitionAll();
+    procs.checkDefinitionAll();
   }
 
   public void link() {

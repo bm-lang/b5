@@ -12,7 +12,7 @@ public class B5Mark extends B5Instr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

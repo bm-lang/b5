@@ -16,7 +16,7 @@ public class B5Declare extends B5Instr implements B5Linkable {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

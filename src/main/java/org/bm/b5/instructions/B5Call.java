@@ -16,7 +16,7 @@ public class B5Call extends B5Instr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

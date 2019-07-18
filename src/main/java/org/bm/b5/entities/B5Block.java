@@ -39,9 +39,9 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
     for (B5Instr instr : instrs) {
-      instr.check();
+      instr.checkDefinition();
     }
   }
 

@@ -32,7 +32,7 @@ public class B5Type extends B5Entity {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
     if (!defined) {
       throw new B5Exception("the type " + name + " is not defined");
     }

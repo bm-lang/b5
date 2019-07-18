@@ -13,7 +13,7 @@ public class B5New extends B5Expr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

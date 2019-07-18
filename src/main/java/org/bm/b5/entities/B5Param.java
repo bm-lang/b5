@@ -15,7 +15,7 @@ public class B5Param extends B5NamedElement implements B5Linkable {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 

@@ -14,7 +14,7 @@ public class B5Get extends B5Expr {
   }
 
   @Override
-  public void check() {
+  public void checkDefinition() {
 
   }
 
