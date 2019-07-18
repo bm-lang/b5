@@ -17,4 +17,10 @@ public class B5Set extends B5Instr {
   public void check() {
 
   }
+
+  @Override
+  public void link() {
+    ref.resolve();
+    value.resolve();
+  }
 }

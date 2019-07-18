@@ -15,4 +15,9 @@ public class B5Return extends B5Instr {
   public void check() {
 
   }
+
+  @Override
+  public void link() {
+    value.resolve();
+  }
 }

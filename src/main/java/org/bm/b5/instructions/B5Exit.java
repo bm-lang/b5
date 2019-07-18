@@ -13,4 +13,9 @@ public class B5Exit extends B5Instr {
 
   }
 
+  @Override
+  public void link() {
+
+  }
+
 }

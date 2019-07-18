@@ -2,6 +2,8 @@
 
 # @IMPORT types.b5
 
+TYPE String END
+
 TYPE RuntimeError
   FIELD message AS String
 END

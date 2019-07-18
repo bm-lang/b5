@@ -1,10 +1,10 @@
 package org.bm.b5.instructions;
 
-import org.bm.b5.B5Referenceable;
+import org.bm.b5.B5Linkable;
 import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Type;
 
-public class B5Declare extends B5Instr implements B5Referenceable {
+public class B5Declare extends B5Instr implements B5Linkable {
 
   public final String name;
   public final B5Type type;
@@ -20,4 +20,18 @@ public class B5Declare extends B5Instr implements B5Referenceable {
 
   }
 
+  @Override
+  public void link() {
+
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public B5Linkable pick(String member) {
+    return type.findField(member);
+  }
 }

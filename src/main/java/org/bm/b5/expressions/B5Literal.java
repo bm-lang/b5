@@ -18,4 +18,9 @@ public class B5Literal extends B5Expr {
   public void check() {
 
   }
+
+  @Override
+  public void resolve() {
+
+  }
 }

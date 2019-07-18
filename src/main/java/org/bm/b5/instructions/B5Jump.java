@@ -6,14 +6,21 @@ public class B5Jump extends B5Instr {
 
   public final String markName;
 
-  public B5Jump(B5Block parent, String markName) {
-    super(parent);
+  public B5Mark linkedMark;
+
+  public B5Jump(B5Block block, String markName) {
+    super(block);
     this.markName = markName;
   }
 
   @Override
   public void check() {
 
+  }
+
+  @Override
+  public void link() {
+    linkedMark = block.findContextMark(markName);
   }
 
 }

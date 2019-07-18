@@ -1,6 +1,5 @@
 package org.bm.b5.expressions;
 
-import org.bm.b5.B5Referenceable;
 import org.bm.b5.instructions.B5Instr;
 
 public class B5Get extends B5Expr {
@@ -8,8 +7,8 @@ public class B5Get extends B5Expr {
   public final B5Expr array;
   public final B5Expr index;
 
-  public B5Get(B5Instr parent, B5Expr array, B5Expr index) {
-    super(parent);
+  public B5Get(B5Instr instr, B5Expr array, B5Expr index) {
+    super(instr);
     this.array = array;
     this.index = index;
   }
@@ -17,6 +16,12 @@ public class B5Get extends B5Expr {
   @Override
   public void check() {
 
+  }
+
+  @Override
+  public void resolve() {
+    array.resolve();
+    index.resolve();
   }
 
 }

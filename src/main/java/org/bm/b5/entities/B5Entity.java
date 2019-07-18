@@ -1,16 +1,16 @@
 package org.bm.b5.entities;
 
-import org.bm.b5.B5NamedElement;
-import org.bm.b5.B5Program;
-import org.bm.b5.B5Element;
+import org.bm.b5.*;
+
+import java.util.Objects;
 
 abstract public class B5Entity extends B5NamedElement {
 
-  public final B5Program parent;
+  public final B5Program program;
 
-  public B5Entity(B5Program parent, String name) {
+  public B5Entity(B5Program program, String name) {
     super(name);
-    this.parent = parent;
+    this.program = program;
   }
 
 }

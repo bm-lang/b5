@@ -7,13 +7,18 @@ public class B5New extends B5Expr {
 
   public final B5Type type;
 
-  public B5New(B5Instr parent, B5Type type) {
-    super(parent);
+  public B5New(B5Instr instr, B5Type type) {
+    super(instr);
     this.type = type;
   }
 
   @Override
   public void check() {
+
+  }
+
+  @Override
+  public void resolve() {
 
   }
 

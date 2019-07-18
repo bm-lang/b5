@@ -1,6 +1,7 @@
 package org.bm.b5.entities;
 
 import org.bm.b5.B5Exception;
+import org.bm.b5.B5Linkable;
 import org.bm.b5.B5Program;
 import org.bm.b5.collections.B5TypeFields;
 import org.bm.b5.collections.B5SuperTypes;
@@ -20,10 +21,21 @@ public class B5Type extends B5Entity {
     this.fields = new B5TypeFields(this);
   }
 
+  public B5Linkable findField(String fieldName) {
+    B5Field field = fields.get(fieldName);
+
+    if (field == null) {
+      throw new B5Exception("type " + name + " doesn't have a field named " + fieldName);
+    }
+
+    return field;
+  }
+
   @Override
   public void check() {
     if (!defined) {
       throw new B5Exception("the type " + name + " is not defined");
     }
   }
+
 }

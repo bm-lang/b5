@@ -4,7 +4,7 @@ import org.bm.b5.B5Scope;
 import org.bm.b5.entities.B5Block;
 import org.bm.b5.expressions.B5Expr;
 
-public class B5IfElse extends B5Instr implements B5Scope {
+public class B5IfElse extends B5Instr {
 
   public final B5Block thenBody;
   public final B5Block elseBody;
@@ -20,6 +20,14 @@ public class B5IfElse extends B5Instr implements B5Scope {
   @Override
   public void check() {
 
+  }
+
+  @Override
+  public void link() {
+    condition.resolve();
+
+    thenBody.link();
+    elseBody.link();
   }
 
 }

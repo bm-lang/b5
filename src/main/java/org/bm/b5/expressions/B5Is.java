@@ -9,8 +9,8 @@ public class B5Is extends B5Expr {
 
   public final B5Type type;
 
-  public B5Is(B5Instr parent, B5Expr value, B5Type type) {
-    super(parent);
+  public B5Is(B5Instr instr, B5Expr value, B5Type type) {
+    super(instr);
     this.value = value;
     this.type = type;
   }
@@ -18,6 +18,11 @@ public class B5Is extends B5Expr {
   @Override
   public void check() {
 
+  }
+
+  @Override
+  public void resolve() {
+    value.resolve();
   }
 
 }

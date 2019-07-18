@@ -7,8 +7,8 @@ public class B5UnaryOperation extends B5Expr {
   public final B5UnaryOperator operator;
   public final B5Expr value;
 
-  public B5UnaryOperation(B5Instr parent, B5UnaryOperator operator, B5Expr value) {
-    super(parent);
+  public B5UnaryOperation(B5Instr instr, B5UnaryOperator operator, B5Expr value) {
+    super(instr);
     this.operator = operator;
     this.value = value;
   }
@@ -16,6 +16,11 @@ public class B5UnaryOperation extends B5Expr {
   @Override
   public void check() {
 
+  }
+
+  @Override
+  public void resolve() {
+    value.resolve();
   }
 
 }

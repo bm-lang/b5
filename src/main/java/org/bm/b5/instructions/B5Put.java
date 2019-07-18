@@ -17,4 +17,11 @@ public class B5Put extends B5Instr {
   public void check() {
 
   }
+
+  @Override
+  public void link() {
+    array.resolve();
+    index.resolve();
+    value.resolve();
+  }
 }

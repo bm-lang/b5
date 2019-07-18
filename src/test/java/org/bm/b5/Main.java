@@ -18,6 +18,7 @@ public class Main {
     B5Parser.parse(reader, program);
 
     program.check();
+    program.link();
 
     try(CWriter writer = new CWriter(System.out)) {
       CCompiler compiler = new CCompiler(writer);

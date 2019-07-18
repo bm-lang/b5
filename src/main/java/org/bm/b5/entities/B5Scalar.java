@@ -1,18 +1,19 @@
 package org.bm.b5.entities;
 
 import org.bm.b5.B5Exception;
+import org.bm.b5.B5Linkable;
 import org.bm.b5.B5Program;
 import org.bm.b5.B5Scope;
 
-public class B5Scalar extends B5Entity implements B5Scope {
+public class B5Scalar extends B5Entity implements B5Linkable, B5Scope {
 
   public final B5Block init;
 
   public B5Type type;
   public boolean defined;
 
-  public B5Scalar(B5Program parent, String name) {
-    super(parent, name);
+  public B5Scalar(B5Program program, String name) {
+    super(program, name);
     this.init = new B5Block(this);
   }
 
@@ -23,4 +24,28 @@ public class B5Scalar extends B5Entity implements B5Scope {
     }
   }
 
+  @Override
+  public void link() {
+    init.link();
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public B5Linkable pick(String member) {
+    return type.findField(member);
+  }
+
+  @Override
+  public B5Linkable findLinkable(String name) {
+    return program.findLinkable(name);
+  }
+
+  @Override
+  public B5Block getContextBlock() {
+    return null;
+  }
 }
