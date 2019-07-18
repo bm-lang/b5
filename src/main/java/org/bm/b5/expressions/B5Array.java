@@ -17,8 +17,8 @@ public class B5Array extends B5Expr {
   }
 
   @Override
-  public void resolve() {
-    size.resolve();
+  public void resolveReferences() {
+    size.resolveReferences();
   }
 
 }

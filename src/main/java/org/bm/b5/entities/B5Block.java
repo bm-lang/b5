@@ -46,9 +46,9 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
     for (B5Instr instr : instrs) {
-      instr.link();
+      instr.linkReferences();
     }
   }
 

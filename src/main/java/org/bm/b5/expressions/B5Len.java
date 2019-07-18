@@ -17,8 +17,8 @@ public class B5Len extends B5Expr {
   }
 
   @Override
-  public void resolve() {
-    array.resolve();
+  public void resolveReferences() {
+    array.resolveReferences();
   }
 
 }

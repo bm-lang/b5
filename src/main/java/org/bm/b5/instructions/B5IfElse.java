@@ -1,6 +1,5 @@
 package org.bm.b5.instructions;
 
-import org.bm.b5.B5Scope;
 import org.bm.b5.entities.B5Block;
 import org.bm.b5.expressions.B5Expr;
 
@@ -23,11 +22,11 @@ public class B5IfElse extends B5Instr {
   }
 
   @Override
-  public void link() {
-    condition.resolve();
+  public void linkReferences() {
+    condition.resolveReferences();
 
-    thenBody.link();
-    elseBody.link();
+    thenBody.linkReferences();
+    elseBody.linkReferences();
   }
 
 }

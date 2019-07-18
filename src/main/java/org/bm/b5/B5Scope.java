@@ -4,7 +4,7 @@ import org.bm.b5.entities.B5Block;
 
 public interface B5Scope {
 
-  void link();
+  void linkReferences();
 
   B5Linkable findLinkable(String name);
 

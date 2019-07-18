@@ -20,8 +20,8 @@ public class B5Loop extends B5Instr implements B5Scope {
   }
 
   @Override
-  public void link() {
-    body.link();
+  public void linkReferences() {
+    body.linkReferences();
   }
 
 }

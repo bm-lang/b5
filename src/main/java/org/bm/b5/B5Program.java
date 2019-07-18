@@ -29,13 +29,13 @@ public class B5Program extends B5Element implements B5Scope {
     procs.checkDefinitionAll();
   }
 
-  public void link() {
+  public void linkReferences() {
     for (B5Scalar scalar : scalars) {
-      scalar.link();
+      scalar.linkReferences();
     }
 
     for (B5Proc proc : procs) {
-      proc.link();
+      proc.linkReferences();
     }
   }
 

@@ -19,8 +19,8 @@ public class B5Set extends B5Instr {
   }
 
   @Override
-  public void link() {
-    ref.resolve();
-    value.resolve();
+  public void linkReferences() {
+    ref.resolveReferences();
+    value.resolveReferences();
   }
 }

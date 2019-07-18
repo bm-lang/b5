@@ -9,7 +9,7 @@ public class B5Null extends B5Expr {
   }
 
   @Override
-  public void resolve() {
+  public void resolveReferences() {
 
   }
 

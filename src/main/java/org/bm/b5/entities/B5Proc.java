@@ -30,8 +30,8 @@ public class B5Proc extends B5Entity implements B5Scope {
   }
 
   @Override
-  public void link() {
-    body.link();
+  public void linkReferences() {
+    body.linkReferences();
   }
 
   @Override

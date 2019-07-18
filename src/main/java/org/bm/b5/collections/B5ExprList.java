@@ -8,7 +8,7 @@ public class B5ExprList extends ArrayList<B5Expr> {
 
   public void resolveAll() {
     for (B5Expr expr : this) {
-      expr.resolve();
+      expr.resolveReferences();
     }
   }
 

@@ -21,7 +21,7 @@ public class B5Declare extends B5Instr implements B5Linkable {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
 
   }
 

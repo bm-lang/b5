@@ -17,7 +17,7 @@ public class B5Return extends B5Instr {
   }
 
   @Override
-  public void link() {
-    value.resolve();
+  public void linkReferences() {
+    value.resolveReferences();
   }
 }

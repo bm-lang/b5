@@ -21,7 +21,7 @@ public class B5Call extends B5Instr {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
     args.resolveAll();
   }
 }

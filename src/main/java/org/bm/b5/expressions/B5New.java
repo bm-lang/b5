@@ -18,7 +18,7 @@ public class B5New extends B5Expr {
   }
 
   @Override
-  public void resolve() {
+  public void resolveReferences() {
 
   }
 

@@ -20,7 +20,7 @@ public class B5Literal extends B5Expr {
   }
 
   @Override
-  public void resolve() {
+  public void resolveReferences() {
 
   }
 }

@@ -19,9 +19,9 @@ public class B5Get extends B5Expr {
   }
 
   @Override
-  public void resolve() {
-    array.resolve();
-    index.resolve();
+  public void resolveReferences() {
+    array.resolveReferences();
+    index.resolveReferences();
   }
 
 }

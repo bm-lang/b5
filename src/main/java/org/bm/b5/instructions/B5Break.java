@@ -19,7 +19,7 @@ public class B5Break extends B5Instr {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
     linkedLoop = block.findContextLoop(loopName);
   }
 

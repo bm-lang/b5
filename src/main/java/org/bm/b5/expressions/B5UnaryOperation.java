@@ -19,8 +19,8 @@ public class B5UnaryOperation extends B5Expr {
   }
 
   @Override
-  public void resolve() {
-    value.resolve();
+  public void resolveReferences() {
+    value.resolveReferences();
   }
 
 }

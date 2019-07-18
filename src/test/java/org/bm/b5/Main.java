@@ -16,7 +16,7 @@ public class Main {
     B5Parser.parse(reader, program);
 
     program.checkDefinition();
-    program.link();
+    program.linkReferences();
 
 //    try(CWriter writer = new CWriter(System.out)) {
 //      CCompiler compiler = new CCompiler(writer);

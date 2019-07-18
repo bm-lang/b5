@@ -21,9 +21,9 @@ public class B5BinaryOperation extends B5Expr {
   }
 
   @Override
-  public void resolve() {
-    left.resolve();
-    right.resolve();
+  public void resolveReferences() {
+    left.resolveReferences();
+    right.resolveReferences();
   }
 
 }

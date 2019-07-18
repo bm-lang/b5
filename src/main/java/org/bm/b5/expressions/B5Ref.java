@@ -25,7 +25,7 @@ public class B5Ref extends B5Expr {
   }
 
   @Override
-  public void resolve() {
+  public void resolveReferences() {
     String firstName = path.get(0);
 
     B5Linkable linkable = instr.findLinkable(firstName);

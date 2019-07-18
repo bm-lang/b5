@@ -19,9 +19,9 @@ public class B5Put extends B5Instr {
   }
 
   @Override
-  public void link() {
-    array.resolve();
-    index.resolve();
-    value.resolve();
+  public void linkReferences() {
+    array.resolveReferences();
+    index.resolveReferences();
+    value.resolveReferences();
   }
 }

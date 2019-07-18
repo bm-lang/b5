@@ -21,7 +21,7 @@ public class B5Fetch extends B5Expr {
   }
 
   @Override
-  public void resolve() {
+  public void resolveReferences() {
     args.resolveAll();
   }
 }

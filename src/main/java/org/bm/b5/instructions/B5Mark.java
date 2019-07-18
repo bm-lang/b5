@@ -17,7 +17,7 @@ public class B5Mark extends B5Instr {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
 
   }
 

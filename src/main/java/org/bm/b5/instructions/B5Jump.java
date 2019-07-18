@@ -19,7 +19,7 @@ public class B5Jump extends B5Instr {
   }
 
   @Override
-  public void link() {
+  public void linkReferences() {
     linkedMark = block.findContextMark(markName);
   }
 
