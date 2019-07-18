@@ -18,6 +18,11 @@ public class B5Array extends B5Expr {
   }
 
   @Override
+  public void checkTypes() {
+    size.checkTypes();
+  }
+
+  @Override
   public B5Type findType() {
     return instr.getProgram().typeArray;
   }

@@ -87,15 +87,13 @@ public class CCompiler {
 
       writer.openStruct(typeName);
 
-      for (B5Type superType : type.superTypes) {
-        writer.comment("Inherited from " + superType.name);
+      if (type.superType != null) {
+        writer.comment("Inherited from " + type.superType.name);
 
-        for (B5Field field : superType.fields) {
+        for (B5Field field : type.superType.fields) {
           renderField(field);
         }
-      }
 
-      if (type.superTypes.notEmpty()) {
         writer.comment("New fields for " + type.name);
       }
 

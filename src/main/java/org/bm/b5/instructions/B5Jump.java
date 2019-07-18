@@ -2,6 +2,8 @@ package org.bm.b5.instructions;
 
 import org.bm.b5.entities.B5Block;
 
+import java.util.function.Consumer;
+
 public class B5Jump extends B5Instr {
 
   public final String markName;
@@ -19,8 +21,17 @@ public class B5Jump extends B5Instr {
   }
 
   @Override
+  public void checkTypes() {
+
+  }
+
+  @Override
   public void linkReferences() {
     linkedMark = block.findContextMark(markName);
   }
 
+  @Override
+  public void walk(Consumer<B5Instr> consumer) {
+
+  }
 }

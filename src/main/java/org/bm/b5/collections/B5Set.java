@@ -14,6 +14,14 @@ abstract public class B5Set<T extends B5NamedElement> implements Iterable<T> {
     list = new ArrayList<>();
   }
 
+  public int size() {
+    return list.size();
+  }
+
+  public T get(int index) {
+    return list.get(index);
+  }
+
   public T get(String name) {
     synchronized (list) {
       return list.stream()
@@ -54,6 +62,12 @@ abstract public class B5Set<T extends B5NamedElement> implements Iterable<T> {
   public void checkDefinitionAll() {
     for (T element : list) {
       element.checkDefinition();
+    }
+  }
+
+  public void checkTypesAll() {
+    for (T element : list) {
+      element.checkTypes();
     }
   }
 }

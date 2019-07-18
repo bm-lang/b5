@@ -6,4 +6,6 @@ abstract public class B5Element {
 
   abstract public void checkDefinition();
 
+  abstract public void checkTypes();
+
 }

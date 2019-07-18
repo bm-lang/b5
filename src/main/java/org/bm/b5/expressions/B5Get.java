@@ -20,6 +20,12 @@ public class B5Get extends B5Expr {
   }
 
   @Override
+  public void checkTypes() {
+    array.checkTypes();
+    index.checkTypes();
+  }
+
+  @Override
   public B5Type findType() {
     // since it comes from an array, it can be anything
     return instr.getProgram().typeAny;

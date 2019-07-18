@@ -3,6 +3,8 @@ package org.bm.b5.instructions;
 import org.bm.b5.B5Scope;
 import org.bm.b5.entities.B5Block;
 
+import java.util.function.Consumer;
+
 public class B5Loop extends B5Instr implements B5Scope {
 
   public final String name;
@@ -20,8 +22,17 @@ public class B5Loop extends B5Instr implements B5Scope {
   }
 
   @Override
+  public void checkTypes() {
+    body.checkTypes();
+  }
+
+  @Override
   public void linkReferences() {
     body.linkReferences();
   }
 
+  @Override
+  public void walk(Consumer<B5Instr> consumer) {
+    body.walk(consumer);
+  }
 }

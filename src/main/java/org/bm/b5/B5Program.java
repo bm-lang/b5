@@ -7,7 +7,11 @@ import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Proc;
 import org.bm.b5.entities.B5Scalar;
 import org.bm.b5.entities.B5Type;
+import org.bm.b5.expressions.B5Expr;
+import org.bm.b5.instructions.B5Return;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class B5Program extends B5Element implements B5Scope {
@@ -46,6 +50,13 @@ public class B5Program extends B5Element implements B5Scope {
     types.checkDefinitionAll();
     scalars.checkDefinitionAll();
     procs.checkDefinitionAll();
+  }
+
+  @Override
+  public void checkTypes() {
+    types.checkTypesAll();
+    scalars.checkTypesAll();
+    procs.checkTypesAll();
   }
 
   public void linkReferences() {
@@ -101,5 +112,39 @@ public class B5Program extends B5Element implements B5Scope {
   @Override
   public B5Program getProgram() {
     return this;
+  }
+
+  public boolean isIntegerType(B5Type type) {
+    return type == typeInt32; // TODO add more cases
+  }
+
+  public boolean isArrayType(B5Type type) {
+    return type == typeArray;
+  }
+
+  public boolean isNumberType(B5Type type) {
+    return type == typeInt32; // TODO add more cases
+  }
+
+  public boolean isBoolType(B5Type type) {
+    return type == typeBool;
+  }
+
+  public B5Type findMostGeneralType(List<B5Type> types) {
+    if (types.isEmpty()) {
+      throw new B5Exception("empty list");
+    }
+
+    B5Type general = types.get(0);
+
+    for (int i = 1; general != null && i < types.size(); i++) {
+      general = B5Type.getCommonType(general, types.get(i));
+    }
+
+    if (general == null) {
+      return typeAny;
+    }
+
+    return general;
   }
 }

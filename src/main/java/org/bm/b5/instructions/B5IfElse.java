@@ -1,7 +1,11 @@
 package org.bm.b5.instructions;
 
+import org.bm.b5.B5Exception;
 import org.bm.b5.entities.B5Block;
+import org.bm.b5.entities.B5Type;
 import org.bm.b5.expressions.B5Expr;
+
+import java.util.function.Consumer;
 
 public class B5IfElse extends B5Instr {
 
@@ -9,6 +13,12 @@ public class B5IfElse extends B5Instr {
   public final B5Block elseBody;
 
   public B5Expr condition;
+
+  @Override
+  public void walk(Consumer<B5Instr> consumer) {
+    thenBody.walk(consumer);
+    elseBody.walk(consumer);
+  }
 
   public B5IfElse(B5Block parent) {
     super(parent);
@@ -19,6 +29,19 @@ public class B5IfElse extends B5Instr {
   @Override
   public void checkDefinition() {
 
+  }
+
+  @Override
+  public void checkTypes() {
+    condition.checkTypes();
+    thenBody.checkTypes();
+    elseBody.checkTypes();
+
+    B5Type conditionType = condition.findType();
+
+    if (!getProgram().isBoolType(conditionType)) {
+      throw new B5Exception("expected condition to be bool");
+    }
   }
 
   @Override

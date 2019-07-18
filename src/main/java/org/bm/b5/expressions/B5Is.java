@@ -21,6 +21,12 @@ public class B5Is extends B5Expr {
   }
 
   @Override
+  public void checkTypes() {
+    value.checkTypes();
+    // TODO check for impossible comparisons
+  }
+
+  @Override
   public B5Type findType() {
     return instr.getProgram().typeBool;
   }

@@ -17,10 +17,8 @@ public class PType {
       throw reader.error("the type '" + type + "' is already defined");
     }
 
-    while (reader.pull(B5Lang.EXTENDS)) {
-      B5Type superType = reader.nextType(program);
-
-      type.superTypes.add(superType);
+    if (reader.pull(B5Lang.EXTENDS)) {
+      type.superType = reader.nextType(program);
     }
 
     while (reader.pull(B5Lang.FIELD)) {

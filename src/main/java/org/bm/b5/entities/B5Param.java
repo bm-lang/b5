@@ -20,6 +20,11 @@ public class B5Param extends B5NamedElement implements B5Linkable {
   }
 
   @Override
+  public void checkTypes() {
+
+  }
+
+  @Override
   public String getName() {
     return name;
   }

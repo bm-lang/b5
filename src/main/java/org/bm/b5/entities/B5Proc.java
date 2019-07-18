@@ -30,6 +30,26 @@ public class B5Proc extends B5Entity implements B5Scope {
   }
 
   @Override
+  public void checkTypes() {
+    params.checkTypesAll();
+    body.checkTypes();
+
+    B5Type bodyReturnType = body.getReturnType();
+
+    if (returnType != null && bodyReturnType != null) {
+      if (!returnType.accepts(bodyReturnType)) {
+        throw new B5Exception("the type " + returnType + " is not compatible with " + bodyReturnType);
+      }
+    }
+    else if (returnType != null) {
+      throw new B5Exception("the block should return " + returnType);
+    }
+    else if (bodyReturnType != null) {
+      throw new B5Exception("the block should not return a value: " + bodyReturnType);
+    }
+  }
+
+  @Override
   public void linkReferences() {
     body.linkReferences();
   }

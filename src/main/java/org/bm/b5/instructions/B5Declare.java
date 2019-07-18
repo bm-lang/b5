@@ -4,6 +4,8 @@ import org.bm.b5.B5Linkable;
 import org.bm.b5.entities.B5Block;
 import org.bm.b5.entities.B5Type;
 
+import java.util.function.Consumer;
+
 public class B5Declare extends B5Instr implements B5Linkable {
 
   public final String name;
@@ -17,6 +19,11 @@ public class B5Declare extends B5Instr implements B5Linkable {
 
   @Override
   public void checkDefinition() {
+
+  }
+
+  @Override
+  public void checkTypes() {
 
   }
 
@@ -38,5 +45,10 @@ public class B5Declare extends B5Instr implements B5Linkable {
   @Override
   public B5Type getType() {
     return type;
+  }
+
+  @Override
+  public void walk(Consumer<B5Instr> consumer) {
+
   }
 }

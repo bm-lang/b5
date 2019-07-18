@@ -2,7 +2,14 @@ package org.bm.b5.instructions;
 
 import org.bm.b5.entities.B5Block;
 
+import java.util.function.Consumer;
+
 public class B5Exit extends B5Instr {
+
+  @Override
+  public void walk(Consumer<B5Instr> consumer) {
+
+  }
 
   public B5Exit(B5Block parent) {
     super(parent);
@@ -10,6 +17,11 @@ public class B5Exit extends B5Instr {
 
   @Override
   public void checkDefinition() {
+
+  }
+
+  @Override
+  public void checkTypes() {
 
   }
 

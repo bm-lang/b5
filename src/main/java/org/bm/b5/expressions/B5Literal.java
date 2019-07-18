@@ -21,6 +21,11 @@ public class B5Literal extends B5Expr {
   }
 
   @Override
+  public void checkTypes() {
+    // TODO
+  }
+
+  @Override
   public B5Type findType() {
     if (!type.isNative) {
       throw new B5Exception("literals can only be native: " + type);

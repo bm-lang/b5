@@ -23,4 +23,9 @@ public class B5Null extends B5Expr {
   public void checkDefinition() {
 
   }
+
+  @Override
+  public void checkTypes() {
+
+  }
 }

@@ -26,6 +26,11 @@ public class B5Ref extends B5Expr {
   }
 
   @Override
+  public void checkTypes() {
+
+  }
+
+  @Override
   public B5Type findType() {
     if (linkedRef == null) {
       throw new B5Exception("reference is not linked");

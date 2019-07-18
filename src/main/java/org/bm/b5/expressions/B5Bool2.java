@@ -4,12 +4,12 @@ import org.bm.b5.B5Exception;
 import org.bm.b5.entities.B5Type;
 import org.bm.b5.instructions.B5Instr;
 
-public class B5Num0 extends B5Expr {
+public class B5Bool2 extends B5Expr {
 
   public final B5Expr left;
   public final B5Expr right;
 
-  public B5Num0(B5Instr instr, B5Expr left, B5Expr right) {
+  public B5Bool2(B5Instr instr, B5Expr left, B5Expr right) {
     super(instr);
     this.left = left;
     this.right = right;
@@ -28,19 +28,17 @@ public class B5Num0 extends B5Expr {
     B5Type leftType = left.findType();
     B5Type rightType = right.findType();
 
-    if (!instr.getProgram().isNumberType(leftType)) {
-      throw new B5Exception("expected " + leftType + " to be number");
+    if (leftType != instr.getProgram().typeBool) {
+      throw new B5Exception("expected " + leftType + " to be bool");
     }
-    else if (!instr.getProgram().isNumberType(rightType)) {
-      throw new B5Exception("expected " + rightType + " to be number");
+    else if (rightType != instr.getProgram().typeBool) {
+      throw new B5Exception("expected " + rightType + " to be bool");
     }
   }
 
   @Override
   public B5Type findType() {
-    B5Type leftType = left.findType();
-    B5Type rightType = right.findType();
-    return instr.getProgram().findBiggestNumberType(leftType, rightType);
+    return instr.getProgram().typeBool;
   }
 
   @Override

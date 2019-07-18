@@ -15,6 +15,7 @@ public class Main {
 
     program.checkDefinition();
     program.linkReferences();
+    program.checkTypes();
 
 //    try(CWriter writer = new CWriter(System.out)) {
 //      CCompiler compiler = new CCompiler(writer);

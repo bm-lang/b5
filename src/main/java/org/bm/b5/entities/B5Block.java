@@ -6,6 +6,7 @@ import org.bm.b5.instructions.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
 
@@ -39,6 +40,13 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
   public void checkDefinition() {
     for (B5Instr instr : instrs) {
       instr.checkDefinition();
+    }
+  }
+
+  @Override
+  public void checkTypes() {
+    for (B5Instr instr : instrs) {
+      instr.checkTypes();
     }
   }
 
@@ -107,5 +115,32 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
     }
 
     return parentBlock.findContextLoop(name);
+  }
+
+  public B5Type getReturnType() {
+    ArrayList<B5Type> returnTypes = new ArrayList<>();
+
+    walk(instr -> {
+      if (instr instanceof B5Return) {
+        B5Return ret = (B5Return)instr;
+        B5Type retType = ret.value.findType();
+
+        returnTypes.add(retType);
+      }
+    });
+
+    if (returnTypes.isEmpty()) {
+      return null;
+    }
+
+    return getProgram().findMostGeneralType(returnTypes);
+  }
+
+  public void walk(Consumer<B5Instr> consumer) {
+    for (B5Instr instr : instrs) {
+      consumer.accept(instr);
+
+      instr.walk(consumer);
+    }
   }
 }

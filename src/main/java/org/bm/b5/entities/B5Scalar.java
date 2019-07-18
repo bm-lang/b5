@@ -25,6 +25,20 @@ public class B5Scalar extends B5Entity implements B5Linkable, B5Scope {
   }
 
   @Override
+  public void checkTypes() {
+    init.checkTypes();
+
+    B5Type returnType = init.getReturnType();
+
+    if (returnType == null) {
+      throw new B5Exception("the scalar " + name + " is not properly initialized");
+    }
+    else if (!type.accepts(returnType)) {
+      throw new B5Exception(type + " is not compatible with " + returnType);
+    }
+  }
+
+  @Override
   public void linkReferences() {
     init.linkReferences();
   }

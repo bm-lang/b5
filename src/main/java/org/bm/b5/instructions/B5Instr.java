@@ -7,8 +7,11 @@ import org.bm.b5.B5Scope;
 import org.bm.b5.entities.B5Block;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 abstract public class B5Instr extends B5Element implements B5Scope {
+
+  public abstract void walk(Consumer<B5Instr> consumer);
 
   public final B5Block block;
 
@@ -43,4 +46,6 @@ abstract public class B5Instr extends B5Element implements B5Scope {
   public B5Program getProgram() {
     return block.getProgram();
   }
+
+
 }
