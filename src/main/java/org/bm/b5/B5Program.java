@@ -138,7 +138,7 @@ public class B5Program extends B5Element implements B5Scope {
     B5Type general = types.get(0);
 
     for (int i = 1; general != null && i < types.size(); i++) {
-      general = B5Type.getCommonType(general, types.get(i));
+      general = getCommonType(general, types.get(i));
     }
 
     if (general == null) {
@@ -146,5 +146,20 @@ public class B5Program extends B5Element implements B5Scope {
     }
 
     return general;
+  }
+
+  public B5Type getCommonType(B5Type type1, B5Type type2) {
+    for (B5Type t1 = type1; t1 != null; t1 = t1.superType) {
+      for (B5Type t2 = type2; t2 != null; t2 = t2.superType) {
+        if (t1 == typeAny || t2 == typeAny) {
+          return typeAny;
+        }
+        else if (t1 == t2) {
+          return t1;
+        }
+      }
+    }
+
+    return null;
   }
 }

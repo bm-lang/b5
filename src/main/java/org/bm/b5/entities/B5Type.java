@@ -57,18 +57,6 @@ public class B5Type extends B5Entity {
     return false;
   }
 
-  public static B5Type getCommonType(B5Type type1, B5Type type2) {
-    for (B5Type t1 = type1; t1 != null; t1 = t1.superType) {
-      for (B5Type t2 = type2; t2 != null; t2 = t2.superType) {
-        if (t1 == t2) {
-          return t1;
-        }
-      }
-    }
-
-    return null;
-  }
-
   @Override
   public String toString() {
     return "Type:" + name;

@@ -91,6 +91,9 @@ public class PExpr {
     else if (reader.test(B5Lang.NEQ)) {
       return PRelNeq.parse(reader, program, instr);
     }
+    else if (reader.test(B5Lang.CAST)) {
+      return PCast.parse(reader, program, instr);
+    }
 
     throw reader.error("unknown expression: " + reader.nextToken());
   }
