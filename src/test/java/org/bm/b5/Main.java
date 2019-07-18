@@ -1,5 +1,6 @@
 package org.bm.b5;
 
+import org.bm.b5.design.B5Program;
 import org.bm.b5.parsing.B5Parser;
 import org.bm.b5.parsing.B5Reader;
 import org.junit.Test;

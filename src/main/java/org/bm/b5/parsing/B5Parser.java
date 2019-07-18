@@ -1,7 +1,6 @@
 package org.bm.b5.parsing;
 
-import org.bm.b5.B5Program;
-import org.bm.b5.parsing.units.PEntity;
+import org.bm.b5.design.B5Program;
 
 public class B5Parser {
 

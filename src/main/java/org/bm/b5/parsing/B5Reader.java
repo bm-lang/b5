@@ -1,10 +1,10 @@
 package org.bm.b5.parsing;
 
 import org.bm.b5.B5Exception;
-import org.bm.b5.B5Program;
-import org.bm.b5.entities.B5Proc;
-import org.bm.b5.entities.B5Scalar;
-import org.bm.b5.entities.B5Type;
+import org.bm.b5.design.B5Program;
+import org.bm.b5.design.entities.B5Proc;
+import org.bm.b5.design.entities.B5Scalar;
+import org.bm.b5.design.entities.B5Type;
 
 import java.io.IOException;
 import java.io.InputStream;
