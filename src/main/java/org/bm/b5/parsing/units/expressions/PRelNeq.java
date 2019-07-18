@@ -1,15 +1,16 @@
-package org.bm.b5.parsing.units;
+package org.bm.b5.parsing.units.expressions;
 
 import org.bm.b5.B5Program;
 import org.bm.b5.expressions.B5Expr;
-import org.bm.b5.expressions.B5NumMod;
+import org.bm.b5.expressions.B5RelNeq;
 import org.bm.b5.instructions.B5Instr;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
+import org.bm.b5.parsing.units.PExpr;
 
-public class PNumMod {
+public class PRelNeq {
   public static B5Expr parse(B5Reader reader, B5Program program, B5Instr instr) {
-    reader.expect(B5Lang.MOD);
+    reader.expect(B5Lang.NEQ);
 
     B5Expr left = PExpr.parse(reader, program, instr);
 
@@ -17,6 +18,6 @@ public class PNumMod {
 
     B5Expr right = PExpr.parse(reader, program, instr);
 
-    return new B5NumMod(instr, left, right);
+    return new B5RelNeq(instr, left, right);
   }
 }
