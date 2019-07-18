@@ -26,6 +26,11 @@ public class B5Param extends B5NamedElement implements B5Linkable {
 
   @Override
   public B5Linkable pick(String member) {
-    return null;
+    return type.findField(member);
+  }
+
+  @Override
+  public B5Type getType() {
+    return type;
   }
 }

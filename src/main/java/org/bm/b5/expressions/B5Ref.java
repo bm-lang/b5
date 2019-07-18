@@ -2,6 +2,7 @@ package org.bm.b5.expressions;
 
 import org.bm.b5.B5Exception;
 import org.bm.b5.B5Linkable;
+import org.bm.b5.entities.B5Type;
 import org.bm.b5.instructions.B5Instr;
 
 import java.util.List;
@@ -22,6 +23,15 @@ public class B5Ref extends B5Expr {
     if (path.isEmpty()) {
       throw new B5Exception("reference path cannot be empty");
     }
+  }
+
+  @Override
+  public B5Type findType() {
+    if (linkedRef == null) {
+      throw new B5Exception("reference is not linked");
+    }
+
+    return linkedRef.getType();
   }
 
   @Override

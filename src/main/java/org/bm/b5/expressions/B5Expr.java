@@ -1,9 +1,12 @@
 package org.bm.b5.expressions;
 
 import org.bm.b5.B5Element;
+import org.bm.b5.entities.B5Type;
 import org.bm.b5.instructions.B5Instr;
 
 abstract public class B5Expr extends B5Element {
+
+  abstract public B5Type findType();
 
   abstract public void resolveReferences(); // TODO should this be inherited from B5Scope?
 

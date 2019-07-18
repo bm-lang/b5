@@ -28,4 +28,9 @@ public class B5Field extends B5NamedElement implements B5Linkable {
   public B5Linkable pick(String member) {
     return type.findField(member);
   }
+
+  @Override
+  public B5Type getType() {
+    return type;
+  }
 }

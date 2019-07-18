@@ -3,15 +3,18 @@ package org.bm.b5.expressions;
 import org.bm.b5.entities.B5Type;
 import org.bm.b5.instructions.B5Instr;
 
-public class B5Null extends B5Expr {
+public class B5BitNot extends B5Expr {
 
-  public B5Null(B5Instr instr) {
+  public final B5Expr value;
+
+  public B5BitNot(B5Instr instr, B5Expr value) {
     super(instr);
+    this.value = value;
   }
 
   @Override
   public B5Type findType() {
-    return instr.getProgram().typeAny;
+    return value.findType();
   }
 
   @Override

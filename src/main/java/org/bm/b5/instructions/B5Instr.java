@@ -2,6 +2,7 @@ package org.bm.b5.instructions;
 
 import org.bm.b5.B5Element;
 import org.bm.b5.B5Linkable;
+import org.bm.b5.B5Program;
 import org.bm.b5.B5Scope;
 import org.bm.b5.entities.B5Block;
 
@@ -36,5 +37,10 @@ abstract public class B5Instr extends B5Element implements B5Scope {
   @Override
   public B5Block getContextBlock() {
     return block;
+  }
+
+  @Override
+  public B5Program getProgram() {
+    return block.getProgram();
   }
 }

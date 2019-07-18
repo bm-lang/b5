@@ -46,6 +46,8 @@ public enum B5Lang {
   LEN,
   GET,
   NULL,
+  NOT,
+  BWN,
 
   WITH,
   ARG,
@@ -53,6 +55,6 @@ public enum B5Lang {
   INDEX,
   VALUE,
   OF,
-  ;
+  BWA, BWO, BWX, AND, OR, ADD, DIV, MOD, MUL, SUB, EQ, GT, GTE, LT, LTE, NEQ;
 
 }

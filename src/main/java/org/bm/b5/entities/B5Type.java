@@ -13,6 +13,7 @@ public class B5Type extends B5Entity {
   public final B5TypeFields fields;
 
   public boolean defined;
+  public boolean isNative;
 
   public B5Type(B5Program program, String name) {
     super(program, name);

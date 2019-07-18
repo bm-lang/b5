@@ -18,6 +18,11 @@ public class B5New extends B5Expr {
   }
 
   @Override
+  public B5Type findType() {
+    return type;
+  }
+
+  @Override
   public void resolveReferences() {
 
   }

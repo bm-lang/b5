@@ -11,8 +11,6 @@ public class Main {
     B5Reader reader = B5Reader.fromResource("/test.b5", Main.class);
     B5Program program = new B5Program();
 
-    B5.createNativeTypes(program);
-
     B5Parser.parse(reader, program);
 
     program.checkDefinition();

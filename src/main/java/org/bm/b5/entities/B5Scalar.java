@@ -40,6 +40,11 @@ public class B5Scalar extends B5Entity implements B5Linkable, B5Scope {
   }
 
   @Override
+  public B5Type getType() {
+    return type;
+  }
+
+  @Override
   public B5Linkable findLinkable(String name) {
     return program.findLinkable(name);
   }
@@ -47,5 +52,10 @@ public class B5Scalar extends B5Entity implements B5Linkable, B5Scope {
   @Override
   public B5Block getContextBlock() {
     return null;
+  }
+
+  @Override
+  public B5Program getProgram() {
+    return program;
   }
 }

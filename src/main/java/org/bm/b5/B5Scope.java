@@ -9,4 +9,6 @@ public interface B5Scope {
   B5Linkable findLinkable(String name);
 
   B5Block getContextBlock();
+
+  B5Program getProgram();
 }

@@ -49,4 +49,9 @@ public class B5Proc extends B5Entity implements B5Scope {
   public B5Block getContextBlock() {
     return null;
   }
+
+  @Override
+  public B5Program getProgram() {
+    return program;
+  }
 }
