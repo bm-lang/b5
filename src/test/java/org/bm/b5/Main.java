@@ -3,6 +3,7 @@ package org.bm.b5;
 import org.bm.b5.design.B5Program;
 import org.bm.b5.parsing.B5Parser;
 import org.bm.b5.parsing.B5Reader;
+import org.bm.b5.runtime.RMachine;
 import org.junit.Test;
 
 public class Main {
@@ -17,6 +18,8 @@ public class Main {
     program.checkDefinition();
     program.linkReferences();
     program.checkTypes();
+
+    new RMachine().run(program);
 
 //    try(CWriter writer = new CWriter(System.out)) {
 //      CCompiler compiler = new CCompiler(writer);

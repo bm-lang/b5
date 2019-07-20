@@ -18,8 +18,7 @@ BODY
   RETURN REF result END
 END
 
-PROC main
-  MAIN
+PROC raise_rescue
 BODY
   DECLARE i AS int32
   SET REF i END VALUE LITERAL `0` AS int32
@@ -46,8 +45,17 @@ BODY
 END
 
 PROC test
+MAIN
 BODY
   DECLARE x AS int32
-  DECLARE y AS String
-  SET REF x END VALUE CAST REF y END AS int32
+
+  SET REF x END VALUE LITERAL `0` AS int32
+
+  IF GT REF x END WITH LITERAL `0` AS int32 THEN
+    DEBUG `Greater than 0`
+  ELSE
+    DEBUG `Less or equal than 0`
+   END
+
+  DEBUG `Hello world!`
 END

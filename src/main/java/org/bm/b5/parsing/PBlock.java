@@ -41,6 +41,9 @@ public class PBlock {
       else if (reader.test(B5Lang.PUT)) {
         PPut.parse(reader, program, block);
       }
+      else if (reader.test(B5Lang.DEBUG)) {
+        PDebug.parse(reader, program, block);
+      }
       else {
         throw reader.error("unknown instruction: " + reader.nextToken());
       }

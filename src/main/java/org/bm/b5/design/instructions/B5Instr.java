@@ -31,7 +31,7 @@ abstract public class B5Instr extends B5Element implements B5Scope {
         }
       }
 
-      current = block.getPrevious(current);
+      current = block.getLocalPrevious(current);
     }
 
     return block.findLinkable(name);
@@ -47,5 +47,7 @@ abstract public class B5Instr extends B5Element implements B5Scope {
     return block.getProgram();
   }
 
-
+  public B5Instr next() {
+    return block.getLocalNext(this);
+  }
 }

@@ -30,7 +30,23 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
     instrs.add(instr);
   }
 
-  public B5Instr getPrevious(B5Instr instr) {
+  public B5Instr getLocalFirst() {
+    if (instrs.isEmpty()) {
+      return null;
+    }
+
+    return instrs.get(0);
+  }
+
+  public B5Instr getLocalLast() {
+    if (instrs.isEmpty()) {
+      return null;
+    }
+
+    return instrs.get(instrs.size() - 1);
+  }
+
+  public B5Instr getLocalPrevious(B5Instr instr) {
     int index = instrs.indexOf(instr);
 
     if (index == -1) {
@@ -41,6 +57,19 @@ public class B5Block extends B5Element implements B5Scope, Iterable<B5Instr> {
     }
 
     return instrs.get(index - 1);
+  }
+
+  public B5Instr getLocalNext(B5Instr instr) {
+    int index = instrs.indexOf(instr);
+
+    if (index == -1) {
+      throw new B5Exception("instr is not part of this block");
+    }
+    else if (index == instrs.size() - 1) {
+      return null;
+    }
+
+    return instrs.get(index + 1);
   }
 
   @Override
