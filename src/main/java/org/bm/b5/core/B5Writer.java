@@ -1,4 +1,4 @@
-package org.bm.b5.compilation;
+package org.bm.b5.core;
 
 import org.bm.b5.B5Exception;
 

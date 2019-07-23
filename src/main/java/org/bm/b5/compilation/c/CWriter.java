@@ -1,6 +1,6 @@
 package org.bm.b5.compilation.c;
 
-import org.bm.b5.compilation.B5Writer;
+import org.bm.b5.core.B5Writer;
 
 import java.io.OutputStream;
 
