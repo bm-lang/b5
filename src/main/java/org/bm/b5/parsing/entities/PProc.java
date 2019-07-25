@@ -5,7 +5,8 @@ import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
-import org.bm.b5.parsing.PBlock;
+import org.bm.b5.parsing.PInstr;
+import org.bm.b5.parsing.instructions.PBlock;
 
 public class PProc {
 
@@ -18,36 +19,34 @@ public class PProc {
       throw reader.error("the procedure '" +  proc + "' is already defined");
     }
 
-    while (reader.pull(B5Lang.PARAM)) {
-      String paramName = reader.nextToken();
-
-      reader.expect(B5Lang.AS);
-
-      B5Type paramType = reader.nextType(program);
-
-      proc.params.add(paramName, paramType);
-    }
-
     if (reader.pull(B5Lang.MAIN)) {
       if (program.main != null) {
         throw reader.error("program already has main: " + program.main);
       }
 
-      if (reader.test(B5Lang.RETURNS)) {
-        throw reader.error("main procs cannot return values: " + proc);
-      }
-
       program.main = proc;
     }
-    else if (reader.pull(B5Lang.RETURNS)) {
+
+    if (reader.pull(B5Lang.PARAMS)) {
+      do {
+        String paramName = reader.nextToken();
+
+        reader.expect(B5Lang.AS);
+
+        B5Type paramType = reader.nextType(program);
+
+        proc.params.add(paramName, paramType);
+      }
+      while (reader.pull(','));
+    }
+
+    if (reader.pull(B5Lang.RETURNS)) {
       proc.returnType = reader.nextType(program);
     }
 
     reader.expect(B5Lang.BODY);
 
-    PBlock.parse(reader, program, proc.body, B5Lang.END);
-
-    reader.expect(B5Lang.END);
+    proc.body = PInstr.parse(reader, program, proc);
 
     proc.defined = true;
   }

@@ -1,15 +1,16 @@
 package org.bm.b5.design.instructions;
 
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Scope;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class B5Debug extends B5Instr {
 
   public final String output;
 
-  public B5Debug(B5Block block, String output) {
-    super(block);
+  public B5Debug(B5Scope scope, String output) {
+    super(scope);
     this.output = output;
   }
 
@@ -29,7 +30,7 @@ public class B5Debug extends B5Instr {
   }
 
   @Override
-  public void walk(Consumer<B5Instr> consumer) {
-
+  public List<B5Instr> getChildren() {
+    return null;
   }
 }

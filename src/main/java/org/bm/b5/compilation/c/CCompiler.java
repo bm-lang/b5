@@ -2,7 +2,6 @@ package org.bm.b5.compilation.c;
 
 import org.bm.b5.B5Exception;
 import org.bm.b5.design.B5Program;
-import org.bm.b5.design.entities.B5Block;
 import org.bm.b5.design.entities.B5Field;
 import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
@@ -55,12 +54,10 @@ public class CCompiler {
     }
   }
 
-  private void renderBlock(B5Block block) {
+  private void renderBlock(B5Instr block) {
     writer.beginBlock();
 
-    for (B5Instr instr : block) {
-      renderInstr(instr);
-    }
+    // TODO
 
     writer.endBlock();
   }

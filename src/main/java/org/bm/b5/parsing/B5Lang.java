@@ -6,17 +6,18 @@ public enum B5Lang {
   INIT,
 
   PROC,
-  PARAM,
+  PARAMS,
   RETURNS,
   BODY,
   MAIN,
 
   TYPE,
   EXTENDS,
-  FIELD,
+  FIELDS,
 
   AS,
   END,
+  BEGIN,
 
   // INSTRUCTIONS
 

@@ -1,29 +1,24 @@
 package org.bm.b5.design.instructions;
 
 import org.bm.b5.B5Exception;
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Program;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.expressions.B5Expr;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class B5IfElse extends B5Instr {
 
-  public final B5Block thenBody;
-  public final B5Block elseBody;
-
   public B5Expr condition;
+  public B5Instr thenInstr;
+  public B5Instr elseInstr;
 
-  @Override
-  public void walk(Consumer<B5Instr> consumer) {
-    thenBody.walk(consumer);
-    elseBody.walk(consumer);
-  }
-
-  public B5IfElse(B5Block parent) {
-    super(parent);
-    this.thenBody = new B5Block(this);
-    this.elseBody = new B5Block(this);
+  public B5IfElse(B5Scope scope) {
+    super(scope);
   }
 
   @Override
@@ -34,12 +29,12 @@ public class B5IfElse extends B5Instr {
   @Override
   public void checkTypes() {
     condition.checkTypes();
-    thenBody.checkTypes();
-    elseBody.checkTypes();
+    thenInstr.checkTypes();
+    elseInstr.checkTypes();
 
     B5Type conditionType = condition.findType();
 
-    if (!getProgram().isBoolType(conditionType)) {
+    if (!parent.getProgram().isBoolType(conditionType)) {
       throw new B5Exception("expected condition to be bool");
     }
   }
@@ -48,8 +43,17 @@ public class B5IfElse extends B5Instr {
   public void linkReferences() {
     condition.resolveReferences();
 
-    thenBody.linkReferences();
-    elseBody.linkReferences();
+    thenInstr.linkReferences();
+    elseInstr.linkReferences();
+  }
+
+  @Override
+  public List<B5Instr> getChildren() {
+    if (elseInstr != null) {
+      return Arrays.asList(thenInstr, elseInstr);
+    }
+
+    return Collections.singletonList(thenInstr);
   }
 
 }

@@ -1,9 +1,10 @@
 package org.bm.b5.design.instructions;
 
 import org.bm.b5.design.B5Linkable;
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class B5Declare extends B5Instr implements B5Linkable {
@@ -11,8 +12,8 @@ public class B5Declare extends B5Instr implements B5Linkable {
   public final String name;
   public final B5Type type;
 
-  public B5Declare(B5Block parent, String name, B5Type type) {
-    super(parent);
+  public B5Declare(B5Scope scope, String name, B5Type type) {
+    super(scope);
     this.name = name;
     this.type = type;
   }
@@ -33,6 +34,11 @@ public class B5Declare extends B5Instr implements B5Linkable {
   }
 
   @Override
+  public List<B5Instr> getChildren() {
+    return null;
+  }
+
+  @Override
   public String getName() {
     return name;
   }
@@ -45,10 +51,5 @@ public class B5Declare extends B5Instr implements B5Linkable {
   @Override
   public B5Type getType() {
     return type;
-  }
-
-  @Override
-  public void walk(Consumer<B5Instr> consumer) {
-
   }
 }

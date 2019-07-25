@@ -1,7 +1,7 @@
 package org.bm.b5.parsing.instructions;
 
 import org.bm.b5.design.B5Program;
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.instructions.B5Declare;
 import org.bm.b5.parsing.B5Lang;
@@ -9,7 +9,7 @@ import org.bm.b5.parsing.B5Reader;
 
 public class PDeclare {
 
-  public static void parse(B5Reader reader, B5Program program, B5Block block) {
+  public static B5Declare parse(B5Reader reader, B5Program program, B5Scope scope) {
     reader.expect(B5Lang.DECLARE);
 
     String name = reader.nextToken();
@@ -18,9 +18,7 @@ public class PDeclare {
 
     B5Type type = reader.nextType(program);
 
-    B5Declare declare = new B5Declare(block, name, type);
-
-    block.add(declare);
+    return new B5Declare(scope, name, type);
   }
 
 }

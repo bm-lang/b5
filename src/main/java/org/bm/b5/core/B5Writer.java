@@ -37,6 +37,10 @@ public class B5Writer implements AutoCloseable {
     }
   }
 
+  protected boolean isLineBroken() {
+    return brokenLine;
+  }
+
   protected void breakLine() {
     flush();
 
@@ -46,32 +50,37 @@ public class B5Writer implements AutoCloseable {
   protected void write(char c) {
     flush();
 
-    try {
-      writer.write(c);
-    }
-    catch (IOException e) {
-      throw new B5Exception(e, "error writing a character: " + c);
-    }
-
     if (c == '\n') {
-      brokenLine = true;
+      newLine();
+    }
+    else {
+      try {
+        writer.write(c);
+      }
+      catch (IOException e) {
+        throw new B5Exception(e, "error writing a character: " + c);
+      }
+    }
+  }
+
+  protected void newLine() {
+    try {
+      writer.write('\n');
+
+      for (int i = 0; i < indentation; i++) {
+        writer.write(tabSymbol);
+      }
+
+      brokenLine = false;
+    }
+    catch(IOException e) {
+      throw new B5Exception(e, "error formatting the code");
     }
   }
 
   public void flush() {
     if (brokenLine) {
-      try {
-        writer.write('\n');
-
-        for (int i = 0; i < indentation; i++) {
-          writer.write(tabSymbol);
-        }
-
-        brokenLine = false;
-      }
-      catch(IOException e) {
-        throw new B5Exception(e, "error formatting the code");
-      }
+      newLine();
     }
   }
 

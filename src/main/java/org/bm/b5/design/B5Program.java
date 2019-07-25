@@ -5,7 +5,6 @@ import org.bm.b5.B5Exception;
 import org.bm.b5.design.collections.B5ProgramProcs;
 import org.bm.b5.design.collections.B5ProgramScalars;
 import org.bm.b5.design.collections.B5ProgramTypes;
-import org.bm.b5.design.entities.B5Block;
 import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Scalar;
 import org.bm.b5.design.entities.B5Type;
@@ -101,11 +100,6 @@ public class B5Program extends B5Element implements B5Scope {
     // TODO add more cases
 
     throw new B5Exception("cannot find biggest integer in: " + left + " and " + right);
-  }
-
-  @Override
-  public B5Block getContextBlock() {
-    return null;
   }
 
   @Override

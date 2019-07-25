@@ -71,6 +71,19 @@ public class B5Reader {
     return false;
   }
 
+  public boolean pull(char expected) {
+    skipVoid();
+
+    char actual = peekChar();
+
+    if (actual == expected) {
+      nextChar();
+      return true;
+    }
+
+    return false;
+  }
+
   public boolean pull(Enum<?> expected) {
     String actual = peek();
 

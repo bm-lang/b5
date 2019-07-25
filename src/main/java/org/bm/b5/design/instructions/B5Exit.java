@@ -1,18 +1,14 @@
 package org.bm.b5.design.instructions;
 
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Scope;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class B5Exit extends B5Instr {
 
-  @Override
-  public void walk(Consumer<B5Instr> consumer) {
-
-  }
-
-  public B5Exit(B5Block parent) {
-    super(parent);
+  public B5Exit(B5Scope scope) {
+    super(scope);
   }
 
   @Override
@@ -28,6 +24,11 @@ public class B5Exit extends B5Instr {
   @Override
   public void linkReferences() {
 
+  }
+
+  @Override
+  public List<B5Instr> getChildren() {
+    return null;
   }
 
 }

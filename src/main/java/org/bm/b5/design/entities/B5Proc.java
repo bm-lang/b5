@@ -5,21 +5,22 @@ import org.bm.b5.design.B5Linkable;
 import org.bm.b5.design.B5Program;
 import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.collections.B5Params;
+import org.bm.b5.design.instructions.B5Instr;
 
 import java.util.Objects;
 
 public class B5Proc extends B5Entity implements B5Scope {
 
   public final B5Params params;
-  public final B5Block body;
+
+  public B5Instr body;
+  public B5Type returnType;
 
   public boolean defined;
-  public B5Type returnType;
 
   public B5Proc(B5Program program, String name) {
     super(program, name);
     this.params = new B5Params(this);
-    this.body = new B5Block(this);
   }
 
   @Override
@@ -66,12 +67,8 @@ public class B5Proc extends B5Entity implements B5Scope {
   }
 
   @Override
-  public B5Block getContextBlock() {
-    return null;
-  }
-
-  @Override
   public B5Program getProgram() {
     return program;
   }
+
 }

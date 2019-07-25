@@ -1,17 +1,18 @@
 package org.bm.b5.parsing.instructions;
 
 import org.bm.b5.design.B5Program;
-import org.bm.b5.design.entities.B5Block;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.instructions.B5IfElse;
+import org.bm.b5.design.instructions.B5Instr;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
-import org.bm.b5.parsing.PBlock;
 import org.bm.b5.parsing.PExpr;
+import org.bm.b5.parsing.PInstr;
 
 public class PIfElse {
 
-  public static void parse(B5Reader reader, B5Program program, B5Block block) {
-    B5IfElse ifElse = new B5IfElse(block);
+  public static B5IfElse parse(B5Reader reader, B5Program program, B5Scope scope) {
+    B5IfElse ifElse = new B5IfElse(scope);
 
     reader.expect(B5Lang.IF);
 
@@ -19,15 +20,13 @@ public class PIfElse {
 
     reader.expect(B5Lang.THEN);
 
-    PBlock.parse(reader, program, ifElse.thenBody, B5Lang.ELSE, B5Lang.END);
+    ifElse.thenInstr = PInstr.parse(reader, program, ifElse);
 
     if (reader.pull(B5Lang.ELSE)) {
-      PBlock.parse(reader, program, ifElse.elseBody, B5Lang.END);
+      ifElse.elseInstr = PInstr.parse(reader, program, ifElse);
     }
 
-    reader.expect(B5Lang.END);
-
-    block.add(ifElse);
+    return ifElse;
   }
 
 }

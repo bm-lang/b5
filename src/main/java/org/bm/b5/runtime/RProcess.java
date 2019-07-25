@@ -1,6 +1,5 @@
 package org.bm.b5.runtime;
 
-import org.bm.b5.design.entities.B5Block;
 import org.bm.b5.design.instructions.*;
 import org.bm.b5.runtime.values.RBool;
 import org.bm.b5.runtime.values.RNull;
@@ -10,12 +9,12 @@ import java.util.Stack;
 public class RProcess {
 
   private final Stack<B5Instr> instrs;
-  private final B5Block block;
+  private final RScope scope;
 
   private RValue result;
 
-  public RProcess(B5Block block) {
-    this.block = block;
+  public RProcess(RScope scope) {
+    this.scope = scope;
     this.instrs = new Stack<>();
   }
 
@@ -27,9 +26,7 @@ public class RProcess {
     do {
       B5Instr next = instrs.pop();
 
-      if (next instanceof B5Break) {
-        evalBreak(scope, (B5Break) next);
-      } else if (next instanceof B5Call) {
+      if (next instanceof B5Call) {
         evalCall(scope, (B5Call) next);
       } else if (next instanceof B5Declare) {
         evalDeclare(scope, (B5Declare) next);
@@ -61,10 +58,8 @@ public class RProcess {
   }
 
   private void gotoNext(B5Instr instr) {
-    B5Instr next = instr.next();
-
-    if (next != null) {
-      instrs.push(next);
+    if (instr.next != null) {
+      instrs.push(instr.next);
     }
   }
 
@@ -72,10 +67,6 @@ public class RProcess {
     System.out.println("DEBUG: " + instr.output);
 
     gotoNext(instr);
-  }
-
-  private void evalBreak(RScope scope, B5Break instr) {
-    throw new RException("not implemented");
   }
 
   private void evalCall(RScope scope, B5Call instr) {
@@ -104,10 +95,10 @@ public class RProcess {
       gotoNext(instr);
 
       if (resultBool.getValue()) {
-        instrs.push(instr.thenBody.getLocalFirst());
+        instrs.push(instr.thenInstr);
       }
-      else if (instr.elseBody != null) {
-        instrs.push(instr.elseBody.getLocalFirst());
+      else if (instr.elseInstr != null) {
+        instrs.push(instr.elseInstr);
       }
     }
     else {

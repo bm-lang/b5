@@ -20,17 +20,18 @@ public class PType {
       type.superType = reader.nextType(program);
     }
 
-    while (reader.pull(B5Lang.FIELD)) {
-      String fieldName = reader.nextToken();
+    if (reader.pull(B5Lang.FIELDS)) {
+      do {
+        String fieldName = reader.nextToken();
 
-      reader.expect(B5Lang.AS);
+        reader.expect(B5Lang.AS);
 
-      B5Type fieldType = reader.nextType(program);
+        B5Type fieldType = reader.nextType(program);
 
-      type.fields.add(fieldName, fieldType);
+        type.fields.add(fieldName, fieldType);
+      }
+      while (reader.pull(','));
     }
-
-    reader.expect(B5Lang.END);
 
     type.defined = true;
   }

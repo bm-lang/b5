@@ -4,7 +4,7 @@ import org.bm.b5.design.B5Program;
 import org.bm.b5.design.entities.B5Scalar;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
-import org.bm.b5.parsing.PBlock;
+import org.bm.b5.parsing.instructions.PBlock;
 
 public class PScalar {
 
@@ -19,9 +19,7 @@ public class PScalar {
 
     reader.expect(B5Lang.INIT);
 
-    PBlock.parse(reader, program, scalar.init, B5Lang.END);
-
-    reader.expect(B5Lang.END);
+    scalar.init = PBlock.parse(reader, program, scalar);
 
     scalar.defined = true;
   }
