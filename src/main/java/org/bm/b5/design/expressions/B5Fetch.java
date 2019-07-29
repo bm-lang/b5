@@ -1,6 +1,7 @@
 package org.bm.b5.design.expressions;
 
 import org.bm.b5.B5Exception;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.collections.B5ExprList;
 import org.bm.b5.design.entities.B5Param;
 import org.bm.b5.design.entities.B5Proc;
@@ -12,8 +13,8 @@ public class B5Fetch extends B5Expr {
   public final B5Proc proc;
   public final B5ExprList args;
 
-  public B5Fetch(B5Instr instr, B5Proc proc) {
-    super(instr);
+  public B5Fetch(B5Scope scope, B5Proc proc) {
+    super(scope);
     this.proc = proc;
     this.args = new B5ExprList();
   }

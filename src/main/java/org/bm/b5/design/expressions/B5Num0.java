@@ -1,6 +1,7 @@
 package org.bm.b5.design.expressions;
 
 import org.bm.b5.B5Exception;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.instructions.B5Instr;
 
@@ -9,8 +10,8 @@ public class B5Num0 extends B5Expr {
   public final B5Expr left;
   public final B5Expr right;
 
-  public B5Num0(B5Instr instr, B5Expr left, B5Expr right) {
-    super(instr);
+  public B5Num0(B5Scope scope, B5Expr left, B5Expr right) {
+    super(scope);
     this.left = left;
     this.right = right;
   }
@@ -28,10 +29,10 @@ public class B5Num0 extends B5Expr {
     B5Type leftType = left.findType();
     B5Type rightType = right.findType();
 
-    if (!instr.getProgram().isNumberType(leftType)) {
+    if (!scope.getProgram().isNumberType(leftType)) {
       throw new B5Exception("expected " + leftType + " to be number");
     }
-    else if (!instr.getProgram().isNumberType(rightType)) {
+    else if (!scope.getProgram().isNumberType(rightType)) {
       throw new B5Exception("expected " + rightType + " to be number");
     }
   }
@@ -40,7 +41,7 @@ public class B5Num0 extends B5Expr {
   public B5Type findType() {
     B5Type leftType = left.findType();
     B5Type rightType = right.findType();
-    return instr.getProgram().findBiggestNumberType(leftType, rightType);
+    return scope.getProgram().findBiggestNumberType(leftType, rightType);
   }
 
   @Override

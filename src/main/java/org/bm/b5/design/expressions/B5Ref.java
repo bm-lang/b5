@@ -2,6 +2,7 @@ package org.bm.b5.design.expressions;
 
 import org.bm.b5.B5Exception;
 import org.bm.b5.design.B5Linkable;
+import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.instructions.B5Instr;
 
@@ -13,8 +14,8 @@ public class B5Ref extends B5Expr {
 
   public B5Linkable linkedRef;
 
-  public B5Ref(B5Instr instr, List<String> path) {
-    super(instr);
+  public B5Ref(B5Scope scope, List<String> path) {
+    super(scope);
     this.path = path;
   }
 
@@ -43,7 +44,7 @@ public class B5Ref extends B5Expr {
   public void resolveReferences() {
     String firstName = path.get(0);
 
-    B5Linkable linkable = instr.findLinkable(firstName);
+    B5Linkable linkable = scope.findLinkable(firstName);
 
     for (int i = 1; i < path.size(); i++) {
       linkable = linkable.pick(path.get(i));
