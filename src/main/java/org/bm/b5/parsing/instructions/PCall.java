@@ -15,15 +15,17 @@ public class PCall {
     reader.expect(B5Lang.CALL);
 
     B5Proc proc = reader.nextProc(program);
+    
     B5Call call = new B5Call(scope, proc);
 
-    while (reader.pull(B5Lang.ARG)) {
-      B5Expr arg = PExpr.parse(reader, program, call);
+    if (reader.pull(B5Lang.ARGS)) {
+      do {
+        B5Expr arg = PExpr.parse(reader, program, call);
 
-      call.args.add(arg);
+        call.args.add(arg);
+      }
+      while (reader.pull(','));
     }
-
-    reader.expect(B5Lang.END);
 
     return call;
   }

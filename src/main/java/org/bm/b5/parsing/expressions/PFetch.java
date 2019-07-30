@@ -18,13 +18,14 @@ public class PFetch {
     B5Proc proc = reader.nextProc(program);
     B5Fetch fetch = new B5Fetch(scope, proc);
 
-    while (reader.pull(B5Lang.ARG)) {
-      B5Expr arg = PExpr.parse(reader, program, scope);
+    if (reader.pull(B5Lang.ARGS)) {
+      do {
+        B5Expr arg = PExpr.parse(reader, program, scope);
 
-      fetch.args.add(arg);
+        fetch.args.add(arg);
+      }
+      while (reader.pull(','));
     }
-
-    reader.expect(B5Lang.END);
 
     return fetch;
   }

@@ -12,34 +12,34 @@ PARAMS arg AS String
 RETURNS RuntimeError
 BODY BEGIN
   DECLARE result AS RuntimeError
-  SET REF result END VALUE NEW RuntimeError
-  SET REF result PICK message END VALUE REF arg END
-  RETURN REF result END
+  SET REF result VALUE NEW RuntimeError
+  SET REF result.message VALUE REF arg
+  RETURN REF result
 END
 
 PROC raise_rescue
 BODY BEGIN
   DECLARE i AS int32
-  SET REF i END VALUE LITERAL `0` AS int32
+  SET REF i VALUE LITERAL `0` AS int32
   LOOP BEGIN
-    IF NOT LT REF i END WITH LITERAL `100` AS int32
+    IF NOT LT REF i, LITERAL `100` AS int32
     THEN JUMP loop_1
 
     DECLARE error AS RuntimeError
 
-    IF EQ REF i END WITH LITERAL `23` AS int32
+    IF EQ REF i, LITERAL `23` AS int32
     THEN BEGIN
-      SET REF error END VALUE FETCH RuntimeError_constructor_new ARG LITERAL `I don't like 23` AS String END
+      SET REF error VALUE FETCH RuntimeError_constructor_new ARGS LITERAL `I don't like 23` AS String
       JUMP rescue_1
     END
 
     MARK rescue_1
-    IF IS REF error END OF RuntimeError
+    IF IS REF error OF RuntimeError
     THEN BEGIN
       # I don't care
     END
 
-    SET REF i END VALUE ADD REF i END WITH LITERAL `1` AS int32
+    SET REF i VALUE ADD REF i, LITERAL `1` AS int32
   END
   MARK loop_1
 END
@@ -48,9 +48,9 @@ PROC test MAIN
 BODY BEGIN
   DECLARE x AS int32
 
-  SET REF x END VALUE LITERAL `0` AS int32
+  SET REF x VALUE LITERAL `0` AS int32
 
-  IF GT REF x END WITH LITERAL `0` AS int32
+  IF GT REF x, LITERAL `0` AS int32
   THEN DEBUG `Greater than 0`
   ELSE DEBUG `Less or equal than 0`
 

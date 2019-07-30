@@ -58,6 +58,12 @@ public class B5Reader {
     }
   }
 
+  public void expect(char expected) {
+    if (!pull(expected)) {
+      throw error("expected symbol '" + expected + "'");
+    }
+  }
+
   public boolean test(Enum<?>... symbols) {
     for (Enum<?> symbol : symbols) {
       String symbolName = symbol.name();

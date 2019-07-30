@@ -16,17 +16,12 @@ public class PRef {
 
     ArrayList<String> items = new ArrayList<>();
 
-    String root = reader.nextToken();
-
-    items.add(root);
-
-    while (reader.pull(B5Lang.PICK)) {
+    do {
       String part = reader.nextToken();
 
       items.add(part);
     }
-
-    reader.expect(B5Lang.END);
+    while(reader.pull('.'));
 
     return new B5Ref(scope, items);
   }

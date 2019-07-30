@@ -15,7 +15,7 @@ public class PNumAdd {
 
     B5Expr left = PExpr.parse(reader, program, scope);
 
-    reader.expect(B5Lang.WITH);
+    reader.expect(',');
 
     B5Expr right = PExpr.parse(reader, program, scope);
 
