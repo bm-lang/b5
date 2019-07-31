@@ -34,7 +34,7 @@ public class B5Ref extends B5Expr {
   @Override
   public B5Type findType() {
     if (linkedRef == null) {
-      throw new B5Exception("reference is not linked");
+      throw new B5Exception("reference is not linked: " + String.join(", ", path));
     }
 
     return linkedRef.getType();

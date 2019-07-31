@@ -13,6 +13,7 @@ public class PBlock {
   public static B5Instr parse(B5Reader reader, B5Program program, B5Scope scope) {
     reader.expect(B5Lang.BEGIN);
 
+    B5Instr root = null;
     B5Instr prev = null;
 
     while(!reader.pull(B5Lang.END)) {
@@ -23,11 +24,15 @@ public class PBlock {
         curr.prev = prev;
       }
 
+      if (root == null) {
+        root = curr;
+      }
+
       prev = curr;
     }
 
-    if (prev != null) {
-      return prev;
+    if (root != null) {
+      return root;
     }
 
     return new B5Nop(scope);

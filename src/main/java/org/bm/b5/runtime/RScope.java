@@ -17,6 +17,10 @@ public class RScope {
     this.references = new HashMap<>();
   }
 
+  public RScope subScope() {
+    return new RScope(this);
+  }
+
   public boolean isDefined(String name) {
     return references.containsKey(name) || parent != null && parent.isDefined(name);
   }
