@@ -44,27 +44,18 @@ public class B5Program extends B5Element implements B5Scope {
     return type;
   }
 
-  public void checkDefinition() {
-    types.checkDefinitionAll();
-    scalars.checkDefinitionAll();
-    procs.checkDefinitionAll();
+  @Override
+  public void link() {
+    types.linkAll();
+    scalars.linkAll();
+    procs.linkAll();
   }
 
   @Override
-  public void checkTypes() {
-    types.checkTypesAll();
-    scalars.checkTypesAll();
-    procs.checkTypesAll();
-  }
-
-  public void linkReferences() {
-    for (B5Scalar scalar : scalars) {
-      scalar.linkReferences();
-    }
-
-    for (B5Proc proc : procs) {
-      proc.linkReferences();
-    }
+  public void compile() {
+    types.compileAll();
+    scalars.compileAll();
+    procs.compileAll();
   }
 
   @Override

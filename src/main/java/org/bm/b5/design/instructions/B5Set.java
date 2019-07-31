@@ -7,7 +7,6 @@ import org.bm.b5.design.expressions.B5Expr;
 import org.bm.b5.design.expressions.B5Ref;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class B5Set extends B5Instr {
 
@@ -19,25 +18,22 @@ public class B5Set extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-    ref.checkTypes();
-    value.checkTypes();
+  public void linkCurrent() {
+    ref.link();
+    value.link();
   }
 
   @Override
-  public void checkTypes() {
-    B5Type refType = ref.findType();
-    B5Type valueType = value.findType();
+  public void compileCurrent() {
+    ref.compile();
+    value.compile();
+
+    B5Type refType = ref.getResultingType();
+    B5Type valueType = value.getResultingType();
 
     if (!refType.accepts(valueType)) {
       throw new B5Exception(refType + " is not compatible with " + valueType);
     }
-  }
-
-  @Override
-  public void linkReferences() {
-    ref.resolveReferences();
-    value.resolveReferences();
   }
 
   @Override

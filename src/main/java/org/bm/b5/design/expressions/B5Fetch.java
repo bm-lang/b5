@@ -6,7 +6,6 @@ import org.bm.b5.design.collections.B5ExprList;
 import org.bm.b5.design.entities.B5Param;
 import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
-import org.bm.b5.design.instructions.B5Instr;
 
 public class B5Fetch extends B5Expr {
 
@@ -20,15 +19,15 @@ public class B5Fetch extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void link() {
+    args.linkAll();
   }
 
   @Override
-  public void checkTypes() {
-    args.checkTypesAll();
+  public void compile() {
+    args.compileAll();
 
-    B5Type[] argTypes = args.findTypes();
+    B5Type[] argTypes = args.getResultingTypes();
 
     if (argTypes.length != proc.params.size()) {
       throw new B5Exception("expected " + proc.params.size() + " parameters");
@@ -41,19 +40,12 @@ public class B5Fetch extends B5Expr {
         throw new B5Exception("the type " + param.type + " is not compatible with " + argTypes[i]);
       }
     }
-  }
 
-  @Override
-  public B5Type findType() {
     if (proc.returnType == null) {
       throw new B5Exception("the proc " + proc + " doesn't have a return value");
     }
 
-    return proc.returnType;
+    setResultingType(proc.returnType);
   }
 
-  @Override
-  public void resolveReferences() {
-    args.resolveAll();
-  }
 }

@@ -2,7 +2,6 @@ package org.bm.b5.design.expressions;
 
 import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
-import org.bm.b5.design.instructions.B5Instr;
 
 public class B5New extends B5Expr {
 
@@ -14,23 +13,14 @@ public class B5New extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
+  public void link() {
 
   }
 
   @Override
-  public void checkTypes() {
-
+  public void compile() {
+    setResultingType(type);
   }
 
-  @Override
-  public B5Type findType() {
-    return type;
-  }
-
-  @Override
-  public void resolveReferences() {
-
-  }
 
 }

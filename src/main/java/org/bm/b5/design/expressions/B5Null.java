@@ -11,22 +11,13 @@ public class B5Null extends B5Expr {
   }
 
   @Override
-  public B5Type findType() {
-    return scope.getProgram().typeAny;
-  }
-
-  @Override
-  public void resolveReferences() {
+  public void link() {
 
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void compile() {
+    setResultingType(scope.getProgram().typeAny);
   }
 
-  @Override
-  public void checkTypes() {
-
-  }
 }

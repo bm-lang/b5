@@ -17,25 +17,19 @@ public class B5Literal extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
+  public void link() {
 
   }
 
   @Override
-  public void checkTypes() {
-    // TODO
-  }
+  public void compile() {
+    // TODO parse value
 
-  @Override
-  public B5Type findType() {
     if (!type.isNative) {
       throw new B5Exception("literals can only be native: " + type);
     }
-    return type;
+
+    setResultingType(type);
   }
 
-  @Override
-  public void resolveReferences() {
-
-  }
 }

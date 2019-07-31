@@ -15,29 +15,21 @@ public class B5Len extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void link() {
+    array.link();
   }
 
   @Override
-  public void checkTypes() {
-    array.checkTypes();
+  public void compile() {
+    array.compile();
 
-    B5Type type = array.findType();
+    B5Type type = array.getResultingType();
 
     if (!scope.getProgram().isArrayType(type)) {
       throw new B5Exception("expected array type instead of: " + type);
     }
-  }
 
-  @Override
-  public B5Type findType() {
-    return scope.getProgram().typeInt32;
-  }
-
-  @Override
-  public void resolveReferences() {
-    array.resolveReferences();
+    setResultingType(scope.getProgram().typeInt32);
   }
 
 }

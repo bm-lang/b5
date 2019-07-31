@@ -24,16 +24,18 @@ public class B5Proc extends B5Entity implements B5Scope {
   }
 
   @Override
-  public void checkDefinition() {
-    if (!defined) {
-      throw new B5Exception("the proc " + name + " is not defined");
-    }
+  public void link() {
+    body.link();
   }
 
   @Override
-  public void checkTypes() {
-    params.checkTypesAll();
-    body.checkTypes();
+  public void compile() {
+    if (!defined) {
+      throw new B5Exception("the proc " + name + " is not defined");
+    }
+
+    params.compileAll();
+    body.compile();
 
     B5Type bodyReturnType = body.getReturnType();
 
@@ -48,11 +50,6 @@ public class B5Proc extends B5Entity implements B5Scope {
     else if (bodyReturnType != null) {
       throw new B5Exception("the block should not return a value: " + bodyReturnType);
     }
-  }
-
-  @Override
-  public void linkReferences() {
-    body.linkReferences();
   }
 
   @Override

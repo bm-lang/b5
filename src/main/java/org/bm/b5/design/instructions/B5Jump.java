@@ -17,18 +17,13 @@ public class B5Jump extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-
-  }
-
-  @Override
-  public void checkTypes() {
-
-  }
-
-  @Override
-  public void linkReferences() {
+  public void linkCurrent() {
     linkedMark = getRoot().findMark(markName);
+  }
+
+  @Override
+  public void compileCurrent() {
+
   }
 
   @Override

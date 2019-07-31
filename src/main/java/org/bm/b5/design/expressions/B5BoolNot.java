@@ -15,28 +15,20 @@ public class B5BoolNot extends B5Expr {
   }
 
   @Override
-  public B5Type findType() {
-    return scope.getProgram().typeBool;
+  public void link() {
+    value.link();
   }
 
   @Override
-  public void resolveReferences() {
-    value.resolveReferences();
-  }
+  public void compile() {
+    value.compile();
 
-  @Override
-  public void checkDefinition() {
-
-  }
-
-  @Override
-  public void checkTypes() {
-    value.checkTypes();
-
-    B5Type type = value.findType();
+    B5Type type = value.getResultingType();
 
     if (!scope.getProgram().isBoolType(type)) {
       throw new B5Exception("expected " + type + " to be bool");
     }
+
+    setResultingType(scope.getProgram().typeBool);
   }
 }

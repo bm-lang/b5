@@ -15,18 +15,13 @@ public class B5Return extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void linkCurrent() {
+    value.link();
   }
 
   @Override
-  public void checkTypes() {
-    value.checkTypes();
-  }
-
-  @Override
-  public void linkReferences() {
-    value.resolveReferences();
+  public void compileCurrent() {
+    value.compile();
   }
 
   @Override

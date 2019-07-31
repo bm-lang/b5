@@ -20,28 +20,7 @@ public class B5Ref extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-    if (path.isEmpty()) {
-      throw new B5Exception("reference path cannot be empty");
-    }
-  }
-
-  @Override
-  public void checkTypes() {
-
-  }
-
-  @Override
-  public B5Type findType() {
-    if (linkedRef == null) {
-      throw new B5Exception("reference is not linked: " + String.join(", ", path));
-    }
-
-    return linkedRef.getType();
-  }
-
-  @Override
-  public void resolveReferences() {
+  public void link() {
     String firstName = path.get(0);
 
     B5Linkable linkable = scope.findLinkable(firstName);
@@ -53,4 +32,15 @@ public class B5Ref extends B5Expr {
     linkedRef = linkable;
   }
 
+  @Override
+  public void compile() {
+    if (path.isEmpty()) {
+      throw new B5Exception("reference path cannot be empty");
+    }
+    if (linkedRef == null) {
+      throw new B5Exception("reference is not linked: " + String.join(", ", path));
+    }
+
+    setResultingType(linkedRef.getType());
+  }
 }

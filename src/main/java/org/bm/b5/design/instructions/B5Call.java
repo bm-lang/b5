@@ -1,7 +1,6 @@
 package org.bm.b5.design.instructions;
 
 import org.bm.b5.B5Exception;
-import org.bm.b5.design.B5Program;
 import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.collections.B5ExprList;
 import org.bm.b5.design.entities.B5Param;
@@ -9,11 +8,11 @@ import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class B5Call extends B5Instr {
 
   public final B5Proc proc;
+
   public final B5ExprList args;
 
   public B5Call(B5Scope scope, B5Proc proc) {
@@ -23,15 +22,15 @@ public class B5Call extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void linkCurrent() {
+    args.linkAll();
   }
 
   @Override
-  public void checkTypes() {
-    args.checkTypesAll();
+  public void compileCurrent() {
+    args.compileAll();
 
-    B5Type[] argTypes = args.findTypes();
+    B5Type[] argTypes = args.getResultingTypes();
 
     if (argTypes.length != proc.params.size()) {
       throw new B5Exception("expected " + proc.params.size() + " parameters");
@@ -44,11 +43,6 @@ public class B5Call extends B5Instr {
         throw new B5Exception("the type " + param.type + " is not compatible with " + argTypes[i]);
       }
     }
-  }
-
-  @Override
-  public void linkReferences() {
-    args.resolveAll();
   }
 
   @Override

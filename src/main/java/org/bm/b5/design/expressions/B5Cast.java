@@ -1,8 +1,8 @@
 package org.bm.b5.design.expressions;
 
+import org.bm.b5.B5Exception;
 import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
-import org.bm.b5.design.instructions.B5Instr;
 
 public class B5Cast extends B5Expr {
 
@@ -16,25 +16,19 @@ public class B5Cast extends B5Expr {
   }
 
   @Override
-  public B5Type findType() {
-    return type;
+  public void link() {
+    value.link();
   }
 
   @Override
-  public void resolveReferences() {
-    value.resolveReferences();
+  public void compile() {
+    value.compile();
+
+    if (!type.accepts(value.getResultingType())) {
+      throw new B5Exception("invalid cast");
+    }
+
+    setResultingType(type);
   }
 
-  @Override
-  public void checkDefinition() {
-    value.checkDefinition();
-    type.checkDefinition();
-  }
-
-  @Override
-  public void checkTypes() {
-    value.checkTypes();
-
-    // TODO detect impossible casts
-  }
 }

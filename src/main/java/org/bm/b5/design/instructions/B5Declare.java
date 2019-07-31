@@ -5,7 +5,6 @@ import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Type;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 public class B5Declare extends B5Instr implements B5Linkable {
 
@@ -19,17 +18,12 @@ public class B5Declare extends B5Instr implements B5Linkable {
   }
 
   @Override
-  public void checkDefinition() {
+  public void linkCurrent() {
 
   }
 
   @Override
-  public void checkTypes() {
-
-  }
-
-  @Override
-  public void linkReferences() {
+  public void compileCurrent() {
 
   }
 

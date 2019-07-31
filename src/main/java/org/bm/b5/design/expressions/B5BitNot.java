@@ -15,28 +15,20 @@ public class B5BitNot extends B5Expr {
   }
 
   @Override
-  public B5Type findType() {
-    return value.findType();
-  }
-
-  @Override
-  public void resolveReferences() {
+  public void link() {
 
   }
 
   @Override
-  public void checkDefinition() {
+  public void compile() {
+    value.compile();
 
-  }
-
-  @Override
-  public void checkTypes() {
-    value.checkTypes();
-
-    B5Type type = value.findType();
+    B5Type type = value.getResultingType();
 
     if (!scope.getProgram().isIntegerType(type)) {
       throw new B5Exception("expected " + type + " to be integer");
     }
+
+    setResultingType(type);
   }
 }

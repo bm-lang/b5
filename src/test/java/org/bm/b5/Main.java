@@ -15,9 +15,8 @@ public class Main {
 
     B5Parser.parse(reader, program);
 
-    program.checkDefinition();
-    program.linkReferences();
-    program.checkTypes();
+    program.link();
+    program.compile();
 
     new RMachine().run(program);
 

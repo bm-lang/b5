@@ -31,16 +31,19 @@ public class B5Type extends B5Entity {
   }
 
   @Override
-  public void checkDefinition() {
-    if (!defined) {
-      throw new B5Exception("the type " + name + " is not defined");
-    }
+  public void link() {
+
   }
 
   @Override
-  public void checkTypes() {
+  public void compile() {
+    if (!defined) {
+      throw new B5Exception("the type " + name + " is not defined");
+    }
+
+    fields.compileAll();
+
     // TODO detect cyclic dependencies
-    fields.checkTypesAll();
   }
 
   public boolean accepts(B5Type type) {

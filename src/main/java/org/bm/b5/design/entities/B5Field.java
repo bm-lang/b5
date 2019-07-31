@@ -15,12 +15,12 @@ public class B5Field extends B5NamedElement implements B5Linkable {
   }
 
   @Override
-  public void checkDefinition() {
+  public void link() {
 
   }
 
   @Override
-  public void checkTypes() {
+  public void compile() {
 
   }
 

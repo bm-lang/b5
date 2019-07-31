@@ -12,7 +12,12 @@ public class B5Nop extends B5Instr {
   }
 
   @Override
-  public void linkReferences() {
+  public void linkCurrent() {
+
+  }
+
+  @Override
+  public void compileCurrent() {
 
   }
 
@@ -21,13 +26,4 @@ public class B5Nop extends B5Instr {
     return null;
   }
 
-  @Override
-  public void checkDefinition() {
-
-  }
-
-  @Override
-  public void checkTypes() {
-
-  }
 }

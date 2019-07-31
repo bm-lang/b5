@@ -22,29 +22,23 @@ public class B5IfElse extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void linkCurrent() {
+    condition.link();
+    thenInstr.link();
+    elseInstr.link();
   }
 
   @Override
-  public void checkTypes() {
-    condition.checkTypes();
-    thenInstr.checkTypes();
-    elseInstr.checkTypes();
+  public void compileCurrent() {
+    condition.compile();
+    thenInstr.compile();
+    elseInstr.compile();
 
-    B5Type conditionType = condition.findType();
+    B5Type conditionType = condition.getResultingType();
 
     if (!parent.getProgram().isBoolType(conditionType)) {
       throw new B5Exception("expected condition to be bool");
     }
-  }
-
-  @Override
-  public void linkReferences() {
-    condition.resolveReferences();
-
-    thenInstr.linkReferences();
-    elseInstr.linkReferences();
   }
 
   @Override

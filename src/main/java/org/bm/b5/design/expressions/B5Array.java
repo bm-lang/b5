@@ -14,23 +14,15 @@ public class B5Array extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void link() {
+    size.link();
   }
 
   @Override
-  public void checkTypes() {
-    size.checkTypes();
-  }
+  public void compile() {
+    size.compile();
 
-  @Override
-  public B5Type findType() {
-    return scope.getProgram().typeArray;
-  }
-
-  @Override
-  public void resolveReferences() {
-    size.resolveReferences();
+    setResultingType(scope.getProgram().typeArray);
   }
 
 }

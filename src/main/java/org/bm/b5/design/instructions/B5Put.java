@@ -16,22 +16,17 @@ public class B5Put extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void linkCurrent() {
+    array.link();
+    index.link();
+    value.link();
   }
 
   @Override
-  public void checkTypes() {
-    array.checkTypes();
-    index.checkTypes();
-    value.checkTypes();
-  }
-
-  @Override
-  public void linkReferences() {
-    array.resolveReferences();
-    index.resolveReferences();
-    value.resolveReferences();
+  public void compileCurrent() {
+    array.compile();
+    index.compile();
+    value.compile();
   }
 
   @Override

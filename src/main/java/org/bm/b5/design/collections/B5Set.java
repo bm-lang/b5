@@ -59,15 +59,15 @@ abstract public class B5Set<T extends B5NamedElement> implements Iterable<T> {
     return list.size() > 0;
   }
 
-  public void checkDefinitionAll() {
+  public void compileAll() {
     for (T element : list) {
-      element.checkDefinition();
+      element.compile();
     }
   }
 
-  public void checkTypesAll() {
+  public void linkAll() {
     for (T element : list) {
-      element.checkTypes();
+      element.link();
     }
   }
 }

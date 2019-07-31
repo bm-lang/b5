@@ -7,25 +7,25 @@ import java.util.ArrayList;
 
 public class B5ExprList extends ArrayList<B5Expr> {
 
-  public void resolveAll() {
+  public void linkAll() {
     for (B5Expr expr : this) {
-      expr.resolveReferences();
+      expr.link();
     }
   }
 
-  public B5Type[] findTypes() {
+  public void compileAll() {
+    for (B5Expr expr : this) {
+      expr.compile();
+    }
+  }
+
+  public B5Type[] getResultingTypes() {
     B5Type[] types = new B5Type[size()];
 
     for (int i = 0; i < types.length; i++) {
-      types[i] = get(i).findType();
+      types[i] = get(i).getResultingType();
     }
 
     return types;
-  }
-
-  public void checkTypesAll() {
-    for (B5Expr expr : this) {
-      expr.checkTypes();
-    }
   }
 }

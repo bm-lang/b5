@@ -17,24 +17,17 @@ public class B5Is extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void link() {
+    value.link();
   }
 
   @Override
-  public void checkTypes() {
-    value.checkTypes();
+  public void compile() {
+    value.compile();
+
     // TODO check for impossible comparisons
-  }
 
-  @Override
-  public B5Type findType() {
-    return scope.getProgram().typeBool;
-  }
-
-  @Override
-  public void resolveReferences() {
-    value.resolveReferences();
+    setResultingType(scope.getProgram().typeBool);
   }
 
 }

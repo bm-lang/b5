@@ -12,17 +12,12 @@ public class B5Exit extends B5Instr {
   }
 
   @Override
-  public void checkDefinition() {
+  public void linkCurrent() {
 
   }
 
   @Override
-  public void checkTypes() {
-
-  }
-
-  @Override
-  public void linkReferences() {
+  public void compileCurrent() {
 
   }
 

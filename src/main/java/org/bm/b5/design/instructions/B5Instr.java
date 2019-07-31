@@ -17,7 +17,24 @@ import java.util.stream.StreamSupport;
 
 abstract public class B5Instr extends B5Element implements B5Scope {
 
-  public abstract void linkReferences();
+  public abstract void linkCurrent();
+  public abstract void compileCurrent();
+
+  @Override
+  public void link() {
+    linkCurrent();
+
+    if (next != null) {
+      next.linkCurrent();
+    }
+  }
+
+  @Override
+  public void compile() {
+    if (next != null) {
+      next.compileCurrent();
+    }
+  }
 
   public abstract List<B5Instr> getChildren();
 
@@ -162,7 +179,7 @@ abstract public class B5Instr extends B5Element implements B5Scope {
     List<B5Type> returnTypes = walkDown()
         .filter(instr -> instr instanceof B5Return)
         .map(instr -> (B5Return)instr)
-        .map(ret -> ret.value.findType())
+        .map(ret -> ret.value.getResultingType())
         .collect(Collectors.toList());
 
     if (returnTypes.isEmpty()) {

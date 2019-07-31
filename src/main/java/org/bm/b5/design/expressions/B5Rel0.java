@@ -17,17 +17,18 @@ public class B5Rel0 extends B5Expr {
   }
 
   @Override
-  public void checkDefinition() {
-
+  public void link() {
+    left.link();
+    right.link();
   }
 
   @Override
-  public void checkTypes() {
-    left.checkTypes();
-    right.checkTypes();
+  public void compile() {
+    left.compile();
+    right.compile();
 
-    B5Type leftType = left.findType();
-    B5Type rightType = right.findType();
+    B5Type leftType = left.getResultingType();
+    B5Type rightType = right.getResultingType();
 
     if (!scope.getProgram().isNumberType(leftType)) {
       throw new B5Exception("expected " + leftType + " to be number");
@@ -35,17 +36,9 @@ public class B5Rel0 extends B5Expr {
     else if (!scope.getProgram().isNumberType(rightType)) {
       throw new B5Exception("expected " + rightType + " to be number");
     }
+
+    setResultingType(scope.getProgram().typeBool);
   }
 
-  @Override
-  public B5Type findType() {
-    return scope.getProgram().typeBool;
-  }
-
-  @Override
-  public void resolveReferences() {
-    left.resolveReferences();
-    right.resolveReferences();
-  }
 
 }
