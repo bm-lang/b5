@@ -12,23 +12,20 @@ PROC ActionLambda_new
   RETURNS ActionLambda
 BODY BEGIN
   DECLARE result AS ActionLambda WITH NEW ActionLambda
-  SET REF result PICK x END VALUE REF x END
-  RETURN result
+  SET REF result.x VALUE REF x
+  RETURN REF result
 END
 
 PROC ActionLambda_run
-  PARAM action AS ActionLambda
-  RETURNS int32
-BODY
-  RETURN ADD REF action PICK x END WITH LITERAL `1` AS INT32
-END
+PARAMS action AS ActionLambda
+RETURNS int32
+BODY RETURN ADD REF action.x, LITERAL `1` AS int32
 
 PROC main MAIN
-BODY
-  DECLARE x AS int32 WITH 0
+BODY BEGIN
+  DECLARE x AS int32 WITH LITERAL `0` AS int32
   DECLARE action AS ActionLambda
-    WITH FETCH ActionLambda_new ARG REF x END
-  CALL ActionLambda_run
-    ARG action
-  END
+    WITH FETCH ActionLambda_new ARGS REF x
+
+  CALL ActionLambda_run ARGS REF action
 END

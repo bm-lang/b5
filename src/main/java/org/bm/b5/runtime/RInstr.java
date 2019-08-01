@@ -62,8 +62,9 @@ public class RInstr {
 
   private static void evalDeclare(RStack stack, RScope scope, B5Declare instr) {
     String name = instr.name;
+    RValue value = scope.resolve(instr.value);
 
-    scope.define(name, new RNull());
+    scope.define(name, value);
 
     stack.push(scope, instr.next);
   }

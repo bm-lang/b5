@@ -22,6 +22,7 @@ public enum B5Lang {
   // INSTRUCTIONS
 
   DECLARE,
+  WITH,
   SET,
   IF,
   THEN,
