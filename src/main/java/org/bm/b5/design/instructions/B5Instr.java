@@ -25,14 +25,16 @@ abstract public class B5Instr extends B5Element implements B5Scope {
     linkCurrent();
 
     if (next != null) {
-      next.linkCurrent();
+      next.link();
     }
   }
 
   @Override
   public void compile() {
+    compileCurrent();
+
     if (next != null) {
-      next.compileCurrent();
+      next.compile();
     }
   }
 
