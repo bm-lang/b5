@@ -10,21 +10,19 @@ public class Main {
 
   @Test
   public void main() {
-    B5Reader reader = B5Reader.fromResource("/test.b5", Main.class);
-    B5Program program = new B5Program();
+    String[] files = { "/test.b5", "/lambda.b5" };
 
-    B5Parser.parse(reader, program);
+    for (String fileName : files) {
+      B5Reader reader = B5Reader.fromResource(fileName, Main.class);
+      B5Program program = new B5Program();
 
-    program.link();
-    program.compile();
+      B5Parser.parse(reader, program);
 
-    new RMachine().run(program);
+      program.link();
+      program.compile();
 
-//    try(CWriter writer = new CWriter(System.out)) {
-//      CCompiler compiler = new CCompiler(writer);
-//
-//      compiler.compile(program);
-//    }
+      new RMachine().run(program);
+    }
   }
 
 }
