@@ -17,7 +17,7 @@ abstract public class B5Expr extends B5Element {
   }
 
   public void setResultingType(B5Type type) {
-    if (resultingType == null) {
+    if (type == null) {
       throw new B5Exception("resulting type cannot be null");
     }
     else if (resultingType != null) {

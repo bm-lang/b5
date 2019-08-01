@@ -147,16 +147,20 @@ abstract public class B5Instr extends B5Element implements B5Scope {
   }
 
   public B5Linkable findLinkable(String name) {
-    return walkUp()
+    B5Linkable result = walkUp()
         .filter(instr -> instr instanceof B5Linkable)
         .map(instr -> (B5Linkable)instr)
         .filter(linkable -> Objects.equals(linkable.getName(), name))
         .reduce((prev, instr) -> {
           throw new B5Exception("duplicated reference: " + name);
         })
-        .orElseThrow(() ->
-          new B5Exception("reference not found: " + name)
-        );
+        .orElse(null);
+
+    if (result != null) {
+      return result;
+    }
+
+    return parent.findLinkable(name);
   }
 
   @Override
