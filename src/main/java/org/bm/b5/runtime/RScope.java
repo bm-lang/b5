@@ -6,12 +6,26 @@ import java.util.HashMap;
 
 public class RScope {
 
+  private final RMachine machine;
   private final HashMap<String, RValue> references;
   private final RScope parent;
 
+  public RScope(RMachine machine) {
+    this(machine, null);
+  }
+  
   public RScope(RScope parent) {
+    this(parent.machine, parent);
+  }
+  
+  private RScope(RMachine machine, RScope parent) {
+    this.machine = machine;
     this.parent = parent;
     this.references = new HashMap<>();
+  }
+
+  public RMachine getMachine() {
+    return machine;
   }
 
   public RScope subScope() {

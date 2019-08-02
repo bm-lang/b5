@@ -21,7 +21,7 @@ public class Main {
       program.link();
       program.compile();
 
-      new RMachine().run(program);
+      new RMachine(program).run();
     }
   }
 

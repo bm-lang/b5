@@ -3,6 +3,8 @@ package org.bm.b5.runtime;
 import org.bm.b5.design.expressions.*;
 import org.bm.b5.runtime.values.RBool;
 import org.bm.b5.runtime.values.RInt32;
+import org.bm.b5.runtime.values.RNumber;
+import org.bm.b5.runtime.values.RObject;
 
 public class RExpr {
 
@@ -19,14 +21,36 @@ public class RExpr {
     else if (expr instanceof B5Fetch) {
       return resolveFetch(scope, (B5Fetch)expr);
     }
+    else if (expr instanceof B5New) {
+      return resolveNew(scope, (B5New)expr);
+    }
+    else if (expr instanceof B5NumAdd) {
+      return resolveNumAdd(scope, (B5NumAdd)expr);
+    }
     else {
       throw new RException("not implemented expression: " + expr);
     }
   }
 
+  private static RValue resolveNumAdd(RScope scope, B5NumAdd expr) {
+    RValue left = RExpr.resolve(scope, expr.left);
+    RValue right = RExpr.resolve(scope, expr.right);
+
+    if (left instanceof RNumber && right instanceof RNumber) {
+      return ((RNumber)left).addition((RNumber)right);
+    }
+    else {
+      throw new RException("not numbers");
+    }
+  }
+
+  private static RValue resolveNew(RScope scope, B5New expr) {
+    return new RObject(expr.type);
+  }
+
   private static RValue resolveLiteral(RScope scope, B5Literal expr) {
     if (expr.getProgram().typeInt32 == expr.type) {
-      return new RInt32(Integer.parseInt(expr.value));
+      return new RInt32(scope, Integer.parseInt(expr.value));
     }
     else {
       throw new RException("type not supported: " + expr.type);
@@ -38,7 +62,7 @@ public class RExpr {
     RValue right = resolve(scope, expr.right);
 
     if (left instanceof RInt32 && right instanceof RInt32) {
-      return new RBool(((RInt32)left).getValue() > ((RInt32)right).getValue());
+      return new RBool(scope, ((RInt32)left).getValue() > ((RInt32)right).getValue());
     }
     else {
       throw new RException("not supported comparison");

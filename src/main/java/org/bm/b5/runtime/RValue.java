@@ -1,8 +1,13 @@
 package org.bm.b5.runtime;
 
-abstract public class RValue {
+import org.bm.b5.design.entities.B5Type;
 
-  abstract public RValue get(String member);
+public interface RValue {
 
-  abstract public void set(String member, RValue value);
+  RValue get(String member);
+
+  void set(String member, RValue value);
+
+  B5Type getType();
+
 }

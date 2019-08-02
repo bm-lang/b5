@@ -3,7 +3,7 @@ package org.bm.b5.runtime.values;
 import org.bm.b5.runtime.RException;
 import org.bm.b5.runtime.RValue;
 
-public class RPlain extends RValue {
+abstract public class RPlain implements RValue {
 
   @Override
   public final RValue get(String member) {

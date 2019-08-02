@@ -6,13 +6,15 @@ import org.bm.b5.design.instructions.B5Instr;
 
 public class RMachine {
 
+  private final B5Program program;
   private final RScope globalScope;
 
-  public RMachine() {
-    this.globalScope = new RScope(null);
+  public RMachine(B5Program program) {
+    this.program = program;
+    this.globalScope = new RScope(this);
   }
 
-  public void run(B5Program program) {
+  public void run() {
     for (B5Scalar scalar : program.scalars) {
       RValue scalarValue = runInstruction(globalScope, scalar.init);
 
@@ -28,6 +30,10 @@ public class RMachine {
     RScope scope = new RScope(parentScope);
 
     return RInstr.run(scope, instr);
+  }
+
+  public B5Program getProgram() {
+    return program;
   }
 
 }

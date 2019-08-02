@@ -40,7 +40,7 @@ public class RInstr {
         return null; // finalize the execution
       } else if (entry.instr instanceof B5Return) {
         stack.clear();
-        return RExpr.resolve(entry.scope, ((B5Return)instr).value); // finalize the execution
+        return RExpr.resolve(entry.scope, ((B5Return)entry.instr).value); // finalize the execution
       } else {
         throw new RException("not implemented instruction: " + entry.instr);
       }
@@ -56,8 +56,16 @@ public class RInstr {
     stack.push(scope, instr.next);
   }
 
-  private static void evalCall(RStack stack, RScope scope, B5Call instr) {
-    throw new RException("not implemented");
+  private static void evalCall(RStack stack, RScope superScope, B5Call call) {
+    stack.push(superScope, call.next);
+
+    RScope scope = superScope.subScope();
+
+    call.proc.params.match(call.args, (param, value) -> {
+      scope.set(param.name, RExpr.resolve(scope, value));
+    });
+
+    RInstr.run(scope, call.proc.body);
   }
 
   private static void evalDeclare(RStack stack, RScope scope, B5Declare instr) {
