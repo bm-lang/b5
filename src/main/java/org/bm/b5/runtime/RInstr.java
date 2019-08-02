@@ -40,7 +40,7 @@ public class RInstr {
         return null; // finalize the execution
       } else if (entry.instr instanceof B5Return) {
         stack.clear();
-        return entry.scope.resolve(((B5Return)instr).value); // finalize the execution
+        return RExpr.resolve(entry.scope, ((B5Return)instr).value); // finalize the execution
       } else {
         throw new RException("not implemented instruction: " + entry.instr);
       }
@@ -62,7 +62,7 @@ public class RInstr {
 
   private static void evalDeclare(RStack stack, RScope scope, B5Declare instr) {
     String name = instr.name;
-    RValue value = scope.resolve(instr.value);
+    RValue value = RExpr.resolve(scope, instr.value);
 
     scope.define(name, value);
 
@@ -70,7 +70,7 @@ public class RInstr {
   }
 
   private static void evalIfElse(RStack stack, RScope scope, B5IfElse ifElse) {
-    RValue result = scope.resolve(ifElse.condition);
+    RValue result = RExpr.resolve(scope, ifElse.condition);
 
     if (result instanceof RBool) {
       RBool resultBool = (RBool)result;
@@ -109,7 +109,7 @@ public class RInstr {
   }
 
   private static void evalSet(RStack stack, RScope scope, B5Set instr) {
-    RValue value = scope.resolve(instr.value);
+    RValue value = RExpr.resolve(scope, instr.value);
 
     if (instr.ref.path.isEmpty()) {
       throw new RException("empty ref"); // TODO remove this validation

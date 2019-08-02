@@ -41,24 +41,6 @@ public class RScope {
     throw new RException("reference not found: " + name);
   }
 
-  public RValue resolve(B5Expr expr) {
-    if (expr instanceof B5Literal) {
-      return RExpr.resolveLiteral(this, (B5Literal)expr);
-    }
-    else if (expr instanceof B5RelGt) {
-      return RExpr.resolveGt(this, (B5RelGt)expr);
-    }
-    else if (expr instanceof B5Ref) {
-      return RExpr.resolveRef(this, (B5Ref)expr);
-    }
-    else if (expr instanceof B5Fetch) {
-      return RExpr.resolveFetch(this, (B5Fetch)expr);
-    }
-    else {
-      throw new RException("not implemented expression: " + expr);
-    }
-  }
-
   public void set(String name, RValue value) {
     if (references.containsKey(name)) {
       references.put(name, value);

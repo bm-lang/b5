@@ -1,14 +1,30 @@
 package org.bm.b5.runtime;
 
-import org.bm.b5.design.expressions.B5Fetch;
-import org.bm.b5.design.expressions.B5Literal;
-import org.bm.b5.design.expressions.B5Ref;
-import org.bm.b5.design.expressions.B5RelGt;
+import org.bm.b5.design.expressions.*;
 import org.bm.b5.runtime.values.RBool;
 import org.bm.b5.runtime.values.RInt32;
 
 public class RExpr {
-  public static RValue resolveLiteral(RScope scope, B5Literal expr) {
+
+  public static RValue resolve(RScope scope, B5Expr expr) {
+    if (expr instanceof B5Literal) {
+      return resolveLiteral(scope, (B5Literal)expr);
+    }
+    else if (expr instanceof B5RelGt) {
+      return resolveGt(scope, (B5RelGt)expr);
+    }
+    else if (expr instanceof B5Ref) {
+      return resolveRef(scope, (B5Ref)expr);
+    }
+    else if (expr instanceof B5Fetch) {
+      return resolveFetch(scope, (B5Fetch)expr);
+    }
+    else {
+      throw new RException("not implemented expression: " + expr);
+    }
+  }
+
+  private static RValue resolveLiteral(RScope scope, B5Literal expr) {
     if (expr.getProgram().typeInt32 == expr.type) {
       return new RInt32(Integer.parseInt(expr.value));
     }
@@ -17,9 +33,9 @@ public class RExpr {
     }
   }
 
-  public static RValue resolveGt(RScope scope, B5RelGt expr) {
-    RValue left = scope.resolve(expr.left);
-    RValue right = scope.resolve(expr.right);
+  private static RValue resolveGt(RScope scope, B5RelGt expr) {
+    RValue left = resolve(scope, expr.left);
+    RValue right = resolve(scope, expr.right);
 
     if (left instanceof RInt32 && right instanceof RInt32) {
       return new RBool(((RInt32)left).getValue() > ((RInt32)right).getValue());
@@ -29,7 +45,7 @@ public class RExpr {
     }
   }
 
-  public static RValue resolveRef(RScope scope, B5Ref expr) {
+  private static RValue resolveRef(RScope scope, B5Ref expr) {
     if (expr.path.isEmpty()) {
       throw new RException("empty ref");
     }
@@ -43,11 +59,11 @@ public class RExpr {
     return value;
   }
 
-  public static RValue resolveFetch(RScope superScope, B5Fetch fetch) {
+  private static RValue resolveFetch(RScope superScope, B5Fetch fetch) {
     RScope scope = superScope.subScope();
 
     fetch.proc.params.match(fetch.args, (param, value) -> {
-      RValue rvalue = superScope.resolve(value);
+      RValue rvalue = resolve(superScope, value);
 
       scope.set(param.name, rvalue);
     });
