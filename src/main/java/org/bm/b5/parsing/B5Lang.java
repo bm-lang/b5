@@ -38,7 +38,7 @@ public enum B5Lang {
   // EXPRESSIONS
 
   REF,
-  NEW,
+  OBJECT,
   ARRAY,
   IS,
   LITERAL,

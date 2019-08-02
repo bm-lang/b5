@@ -11,7 +11,7 @@ PROC ActionLambda_new
   PARAMS x AS int32
   RETURNS ActionLambda
 BODY BEGIN
-  DECLARE result AS ActionLambda WITH NEW ActionLambda
+  DECLARE result AS ActionLambda WITH OBJECT ActionLambda
   SET REF result.x VALUE REF x
   RETURN REF result
 END

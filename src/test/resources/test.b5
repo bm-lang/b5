@@ -11,7 +11,7 @@ PROC RuntimeError_constructor_new
 PARAMS arg AS String
 RETURNS RuntimeError
 BODY BEGIN
-  DECLARE result AS RuntimeError WITH NEW RuntimeError
+  DECLARE result AS RuntimeError WITH OBJECT RuntimeError
   SET REF result.message VALUE REF arg
   RETURN REF result
 END

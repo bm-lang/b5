@@ -21,8 +21,8 @@ public class RExpr {
     else if (expr instanceof B5Fetch) {
       return resolveFetch(scope, (B5Fetch)expr);
     }
-    else if (expr instanceof B5New) {
-      return resolveNew(scope, (B5New)expr);
+    else if (expr instanceof B5Object) {
+      return resolveObject(scope, (B5Object)expr);
     }
     else if (expr instanceof B5NumAdd) {
       return resolveNumAdd(scope, (B5NumAdd)expr);
@@ -44,7 +44,7 @@ public class RExpr {
     }
   }
 
-  private static RValue resolveNew(RScope scope, B5New expr) {
+  private static RValue resolveObject(RScope scope, B5Object expr) {
     return new RObject(expr.type);
   }
 

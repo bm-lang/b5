@@ -3,7 +3,6 @@ package org.bm.b5.parsing;
 import org.bm.b5.design.B5Program;
 import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.expressions.B5Expr;
-import org.bm.b5.design.instructions.B5Instr;
 import org.bm.b5.parsing.expressions.*;
 
 public class PExpr {
@@ -12,8 +11,8 @@ public class PExpr {
     if (reader.test(B5Lang.REF)) {
       return PRef.parse(reader, program, scope);
     }
-    else if (reader.test(B5Lang.NEW)) {
-      return PNew.parse(reader, program, scope);
+    else if (reader.test(B5Lang.OBJECT)) {
+      return PObject.parse(reader, program, scope);
     }
     else if (reader.test(B5Lang.ARRAY)) {
       return PArray.parse(reader, program, scope);
