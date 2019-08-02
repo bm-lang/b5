@@ -1,9 +1,6 @@
 package org.bm.b5.runtime;
 
-import org.bm.b5.design.expressions.B5Expr;
-import org.bm.b5.design.expressions.B5Literal;
-import org.bm.b5.design.expressions.B5Ref;
-import org.bm.b5.design.expressions.B5RelGt;
+import org.bm.b5.design.expressions.*;
 
 import java.util.HashMap;
 
@@ -53,6 +50,9 @@ public class RScope {
     }
     else if (expr instanceof B5Ref) {
       return RExpr.resolveRef(this, (B5Ref)expr);
+    }
+    else if (expr instanceof B5Fetch) {
+      return RExpr.resolveFetch(this, (B5Fetch)expr);
     }
     else {
       throw new RException("not implemented expression: " + expr);

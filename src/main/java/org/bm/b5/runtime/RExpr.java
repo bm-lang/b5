@@ -1,5 +1,6 @@
 package org.bm.b5.runtime;
 
+import org.bm.b5.design.expressions.B5Fetch;
 import org.bm.b5.design.expressions.B5Literal;
 import org.bm.b5.design.expressions.B5Ref;
 import org.bm.b5.design.expressions.B5RelGt;
@@ -40,5 +41,17 @@ public class RExpr {
     }
 
     return value;
+  }
+
+  public static RValue resolveFetch(RScope superScope, B5Fetch fetch) {
+    RScope scope = superScope.subScope();
+
+    fetch.proc.params.match(fetch.args, (param, value) -> {
+      RValue rvalue = superScope.resolve(value);
+
+      scope.set(param.name, rvalue);
+    });
+
+    return RInstr.run(scope, fetch.proc.body);
   }
 }
