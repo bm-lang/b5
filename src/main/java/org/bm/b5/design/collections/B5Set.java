@@ -5,6 +5,7 @@ import org.bm.b5.design.B5NamedElement;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 abstract public class B5Set<T extends B5NamedElement> implements Iterable<T> {
 
