@@ -5,7 +5,10 @@ import org.bm.b5.design.instructions.*;
 
 public class FInstr {
   public static void write(FWriter writer, B5Instr instr) {
-    if (instr instanceof B5Call) {
+    if (instr instanceof B5Block) {
+      writeBlock(writer, (B5Block)instr);
+    }
+    else if (instr instanceof B5Call) {
       writeCall(writer, (B5Call)instr);
     }
     else if (instr instanceof B5Debug) {
@@ -44,6 +47,10 @@ public class FInstr {
     else {
       throw new B5Exception("unknown instr: " + instr);
     }
+  }
+
+  private static void writeBlock(FWriter writer, B5Block instr) {
+
   }
 
   private static void writeSet(FWriter writer, B5Set set) {

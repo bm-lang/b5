@@ -124,11 +124,11 @@ abstract public class B5Instr extends B5Element implements B5Scope {
 
         B5Instr next = stack.pop();
 
-        List<B5Instr> children = next.getChildren();
-
         if (next.next != null) {
           stack.push(next.next);
         }
+
+        List<B5Instr> children = next.getChildren();
 
         if (children != null && children.size() > 0) {
           for (int i = children.size() - 1; i >= 0; i--) {

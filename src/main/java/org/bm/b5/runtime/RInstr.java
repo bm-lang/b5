@@ -17,7 +17,10 @@ public class RInstr {
     do {
       RStack.Entry entry = stack.pop();
 
-      if (entry.instr instanceof B5Call) {
+      if (entry.instr instanceof B5Block) {
+        evalBlock(stack, entry.scope, (B5Block) entry.instr);
+      }
+      else if (entry.instr instanceof B5Call) {
         evalCall(stack, entry.scope, (B5Call) entry.instr);
       } else if (entry.instr instanceof B5Declare) {
         evalDeclare(stack, entry.scope, (B5Declare) entry.instr);
@@ -48,6 +51,12 @@ public class RInstr {
     while (stack.alive());
 
     return null;
+  }
+
+  private static void evalBlock(RStack stack, RScope superScope, B5Block block) {
+    RScope scope = superScope.subScope();
+
+    stack.push(scope, block.instr);
   }
 
   private static void evalDebug(RStack stack, RScope scope, B5Debug instr) {
