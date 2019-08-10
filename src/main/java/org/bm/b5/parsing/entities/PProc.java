@@ -6,7 +6,6 @@ import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.parsing.B5Lang;
 import org.bm.b5.parsing.B5Reader;
 import org.bm.b5.parsing.PInstr;
-import org.bm.b5.parsing.instructions.PBlock;
 
 public class PProc {
 
