@@ -157,7 +157,7 @@ public class FExpr {
   private static void writeObject(FWriter writer, B5Object expr) {
   }
 
-  private static void writeRef(FWriter writer, B5Ref expr) {
+  public static void writeRef(FWriter writer, B5Ref expr) {
   }
 
   private static void writeRelEq(FWriter writer, B5RelEq expr) {

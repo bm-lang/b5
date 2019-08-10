@@ -52,6 +52,7 @@ public enum B5Lang {
   ARGS,
   INDEX,
   VALUE,
+  NOP,
   OF,
   BWA,
   BWO,
