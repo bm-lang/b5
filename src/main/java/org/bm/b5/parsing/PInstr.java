@@ -6,7 +6,6 @@ import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.expressions.B5Expr;
 import org.bm.b5.design.instructions.*;
-import org.bm.b5.parsing.expressions.PRef;
 
 public class PInstr {
   public static B5Instr parse(B5Reader reader, B5Program program, B5Scope scope) {
@@ -208,7 +207,7 @@ public class PInstr {
 
     B5Set set = new B5Set(scope);
 
-    set.ref = PRef.parse(reader, program, set);
+    set.ref = PExpr.parseRef(reader, program, set);
 
     reader.expect(B5Lang.VALUE);
 

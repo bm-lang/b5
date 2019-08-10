@@ -1,9 +1,6 @@
 package org.bm.b5.parsing;
 
 import org.bm.b5.design.B5Program;
-import org.bm.b5.parsing.entities.PProc;
-import org.bm.b5.parsing.entities.PScalar;
-import org.bm.b5.parsing.entities.PType;
 
 public class PEntity {
 

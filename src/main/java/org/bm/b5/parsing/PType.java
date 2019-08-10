@@ -1,4 +1,4 @@
-package org.bm.b5.parsing.entities;
+package org.bm.b5.parsing;
 
 import org.bm.b5.design.B5Program;
 import org.bm.b5.design.entities.B5Type;
