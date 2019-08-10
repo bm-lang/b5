@@ -5,7 +5,6 @@ import org.bm.b5.design.B5Scope;
 import org.bm.b5.design.entities.B5Proc;
 import org.bm.b5.design.entities.B5Type;
 import org.bm.b5.design.expressions.*;
-import org.bm.b5.parsing.expressions.*;
 
 import java.util.ArrayList;
 
